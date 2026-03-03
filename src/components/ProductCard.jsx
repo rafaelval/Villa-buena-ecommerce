@@ -15,9 +15,13 @@ const ProductCard = ({ product }) => {
         />
 
         <div className="card-body d-flex flex-column">
-          <h6 className="card-title">{product.title.slice(0, 50)}...</h6>
+          <h6 className="card-title text-truncate" title={product.title}>
+            {product.title}
+          </h6>
 
-          <p className="fw-bold mt-auto">${product.price}</p>
+          <p className="fw-bold mt-auto text-primary">
+            ${Number(product.price).toFixed(2)}
+          </p>
 
           <div className="d-flex gap-2">
             <Link

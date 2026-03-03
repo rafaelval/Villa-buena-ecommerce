@@ -7,12 +7,12 @@ export const useCartStore = create(
       cart: [],
 
       addToCart: (product) => {
-        const existing = get().cart.find((p) => p.id === product.id);
+        const existing = get().cart.find((product) => product.id === product.id);
 
         if (existing) {
           set({
-            cart: get().cart.map((p) =>
-              p.id === product.id ? { ...p, qty: p.qty + 1 } : p,
+            cart: get().cart.map((product) =>
+              product.id === product.id ? { ...product, qty: product.qty + 1 } : product,
             ),
           });
         } else {
@@ -24,21 +24,21 @@ export const useCartStore = create(
 
       increaseQty: (id) =>
         set({
-          cart: get().cart.map((p) =>
-            p.id === id ? { ...p, qty: p.qty + 1 } : p,
+          cart: get().cart.map((product) =>
+            product.id === id ? { ...product, qty: product.qty + 1 } : product,
           ),
         }),
 
       decreaseQty: (id) =>
         set({
           cart: get()
-            .cart.map((p) => (p.id === id ? { ...p, qty: p.qty - 1 } : p))
-            .filter((p) => p.qty > 0),
+            .cart.map((product) => (product.id === id ? { ...product, qty: product.qty - 1 } : product))
+            .filter((product) => product.qty > 0),
         }),
 
       removeFromCart: (id) =>
         set({
-          cart: get().cart.filter((p) => p.id !== id),
+          cart: get().cart.filter((product) => product.id !== id),
         }),
       clearCart: () => set({ cart: [] }),
     }),
