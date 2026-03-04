@@ -3,45 +3,59 @@ import { persist } from "zustand/middleware";
 
 export const useCartStore = create(
   persist(
-    (set, get) => ({
+    (set) => ({
       cart: [],
 
-      addToCart: (product) => {
-        const existing = get().cart.find((product) => product.id === product.id);
+      addToCart: (product) =>
+        set((state) => {
+          const existing = state.cart.find(
+            (item) => item.id === product.id
+          );
 
-        if (existing) {
-          set({
-            cart: get().cart.map((product) =>
-              product.id === product.id ? { ...product, qty: product.qty + 1 } : product,
-            ),
-          });
-        } else {
-          set({
-            cart: [...get().cart, { ...product, qty: 1 }],
-          });
-        }
-      },
+          if (existing) {
+            return {
+              cart: state.cart.map((item) =>
+                item.id === product.id
+                  ? { ...item, qty: item.qty + 1 }
+                  : item
+              ),
+            };
+          }
+
+          return {
+            cart: [...state.cart, { ...product, qty: 1 }],
+          };
+        }),
 
       increaseQty: (id) =>
-        set({
-          cart: get().cart.map((product) =>
-            product.id === id ? { ...product, qty: product.qty + 1 } : product,
+        set((state) => ({
+          cart: state.cart.map((item) =>
+            item.id === id
+              ? { ...item, qty: item.qty + 1 }
+              : item
           ),
-        }),
+        })),
 
       decreaseQty: (id) =>
-        set({
-          cart: get()
-            .cart.map((product) => (product.id === id ? { ...product, qty: product.qty - 1 } : product))
-            .filter((product) => product.qty > 0),
-        }),
+        set((state) => ({
+          cart: state.cart
+            .map((item) =>
+              item.id === id
+                ? { ...item, qty: item.qty - 1 }
+                : item
+            )
+            .filter((item) => item.qty > 0),
+        })),
 
       removeFromCart: (id) =>
-        set({
-          cart: get().cart.filter((product) => product.id !== id),
-        }),
-      clearCart: () => set({ cart: [] }),
+        set((state) => ({
+          cart: state.cart.filter(
+            (item) => item.id !== id
+          ),
+        })),
     }),
-    { name: "cart-storage" },
-  ),
+    {
+      name: "cart-storage",
+    }
+  )
 );

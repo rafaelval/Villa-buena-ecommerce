@@ -6,16 +6,19 @@ import { useState } from "react";
 export const ProductDetail = () => {
   const { id } = useParams();
   const navigate = useNavigate();
-  const { data: product, isLoading, isError } = useProduct(id);
+
+  const numericId = Number(id);
+
+  const { data: product, isLoading, isError } = useProduct(numericId);
+
   const addToCart = useCartStore((state) => state.addToCart);
+
   const [selectedImage, setSelectedImage] = useState(null);
 
   if (isLoading) {
     return (
       <div className="container py-5 text-center">
-        <div className="spinner-border text-primary" role="status">
-          <span className="visually-hidden">Loading...</span>
-        </div>
+        <div className="spinner-border text-primary" />
         <h4 className="mt-3">Loading product...</h4>
       </div>
     );
@@ -24,30 +27,30 @@ export const ProductDetail = () => {
   if (isError || !product) {
     return (
       <div className="container py-5">
-        <div className="alert alert-warning text-center" role="alert">
-          <h4 className="alert-heading">Product not found</h4>
-          <p>The product you're looking for doesn't exist or has been removed.</p>
-          <hr />
+        <div className="alert alert-warning text-center">
+          <h4>Product not found</h4>
           <button
-            className="btn btn-outline-secondary"
+            className="btn btn-outline-secondary mt-3"
             onClick={() => navigate("/")}
           >
-            ← Back to Products
+            ← Back to Store
           </button>
         </div>
       </div>
     );
   }
 
-  const images = product.images || [product.image];
-  const mainImage = selectedImage || images[0];
+  const images = product.images?.length ? product.images : [product.thumbnail];
+
+  const mainImage =
+    selectedImage && images.includes(selectedImage) ? selectedImage : images[0];
 
   const handleAddToCart = () => {
     addToCart({
       id: product.id,
       title: product.title,
       price: product.price,
-      image: product.image,
+      image: product.thumbnail,
     });
   };
 
@@ -61,18 +64,19 @@ export const ProductDetail = () => {
       </button>
 
       <div className="row g-5">
-        {/* Images section */}
+        {/* Images */}
         <div className="col-md-6">
           <div className="d-flex">
-            {/* Thumbnails */}
             <div className="me-3">
               {images.map((img, index) => (
                 <img
                   key={index}
                   src={img}
-                  alt={`${product.title} - thumbnail ${index + 1}`}
+                  alt={product.title}
                   onClick={() => setSelectedImage(img)}
-                  className={`img-thumbnail mb-2 ${mainImage === img ? 'border-primary border-2' : ''}`}
+                  className={`img-thumbnail mb-2 ${
+                    mainImage === img ? "border-primary border-2" : ""
+                  }`}
                   style={{
                     width: "70px",
                     height: "70px",
@@ -83,7 +87,6 @@ export const ProductDetail = () => {
               ))}
             </div>
 
-            {/* Main image */}
             <div className="flex-grow-1 text-center">
               <img
                 src={mainImage}
@@ -98,41 +101,53 @@ export const ProductDetail = () => {
           </div>
         </div>
 
-        {/* Product info */}
+        {/* Info */}
         <div className="col-md-6">
-          <h3 className="mb-3">{product.title}</h3>
+          <h3>{product.title}</h3>
 
+          {/* DummyJSON rating */}
           {product.rating && (
             <div className="mb-3">
               <div className="d-flex align-items-center">
-                <span className="text-warning fs-5">
-                  {"★".repeat(Math.floor(product.rating.rate))}
-                  {"☆".repeat(5 - Math.floor(product.rating.rate))}
-                </span>
-                <span className="text-muted ms-2">
-                  ({product.rating.count} reviews)
-                </span>
+                {typeof product.rating === "number" ? (
+                  <>
+                    <span className="text-warning">
+                      {"★".repeat(Math.floor(product.rating))}
+                      {"☆".repeat(5 - Math.floor(product.rating))}
+                    </span>
+                    <span className="ms-2 text-muted">({product.rating})</span>
+                  </>
+                ) : (
+                  <>
+                    <span className="text-warning">
+                      {"★".repeat(Math.floor(product.rating.rate))}
+                      {"☆".repeat(5 - Math.floor(product.rating.rate))}
+                    </span>
+                    <span className="ms-2 text-muted">
+                      ({product.rating.count} reviews)
+                    </span>
+                  </>
+                )}
               </div>
             </div>
           )}
 
-          <hr />
-
-          <h4 className="text-danger mb-4">
-            ${Number(product.price).toFixed(2)}
-            {product.discount && (
-              <span className="badge bg-success ms-2">{product.discount}% OFF</span>
+          <h4 className="text-danger mt-3">
+            ${product.price.toFixed(2)}
+            {product.discountPercentage && (
+              <span className="badge bg-success ms-2">
+                {product.discountPercentage}% OFF
+              </span>
             )}
           </h4>
 
-          <p className="lead mb-4">{product.description}</p>
+          <p className="lead mt-4">{product.description}</p>
 
           <div className="d-grid gap-3 mt-4">
             <button
               className="btn btn-warning btn-lg"
               onClick={handleAddToCart}
             >
-              <i className="bi bi-cart-plus me-2"></i>
               Add to Cart
             </button>
 
@@ -140,7 +155,6 @@ export const ProductDetail = () => {
               className="btn btn-dark btn-lg"
               onClick={() => navigate("/cart")}
             >
-              <i className="bi bi-lightning-charge me-2"></i>
               Buy Now
             </button>
           </div>

@@ -5,13 +5,13 @@ const ProductCard = ({ product }) => {
   const addToCart = useCartStore((state) => state.addToCart);
 
   return (
-    <div className="col-md-4 col-lg-3 mb-4">
+    <div className="col-md-4 col-lg-3 mb-4 pt">
       <div className="card h-100 shadow-sm">
         <img
-          src={product.image}
-          className="card-img-top p-3"
+          src={product.thumbnail || product.images?.[0]}
+          className="card-img-top pt-3"
           alt={product.title}
-          style={{ height: "200px", objectFit: "contain" }}
+          style={{ height: "200px", objectFit: "cover" }}
         />
 
         <div className="card-body d-flex flex-column">
@@ -38,7 +38,7 @@ const ProductCard = ({ product }) => {
                   id: product.id,
                   title: product.title,
                   price: product.price,
-                  image: product.image,
+                  thumbnail: product.thumbnail,
                 })
               }
             >

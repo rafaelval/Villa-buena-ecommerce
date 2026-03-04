@@ -32,7 +32,7 @@ export const Cart = () => {
               <div className="row g-0">
                 <div className="col-md-3 d-flex align-items-center justify-content-center p-3">
                   <img
-                    src={item.image}
+                    src={item.thumbnail}
                     alt={item.title}
                     style={{
                       maxHeight: "120px",

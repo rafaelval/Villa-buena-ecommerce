@@ -1,9 +1,16 @@
 import { useQuery } from "@tanstack/react-query";
-import { categoryService } from "../../services/categoryService";
+import axios from "axios";
+
+const fetchCategories = async () => {
+  const { data } = await axios.get(
+    "https://dummyjson.com/products/categories"
+  );
+  return data;
+};
 
 export const useCategories = () => {
   return useQuery({
     queryKey: ["categories"],
-    queryFn: categoryService.getAll,
+    queryFn: fetchCategories,
   });
 };

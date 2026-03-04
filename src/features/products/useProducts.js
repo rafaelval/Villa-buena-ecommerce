@@ -1,12 +1,16 @@
 import { useQuery } from "@tanstack/react-query";
-import { productService } from "../../services/productService";
+import axios from "axios";
 
-export const useProducts = (category) => {
+const fetchProducts = async () => {
+  const { data } = await axios.get(
+    "https://dummyjson.com/products?limit=200"
+  );
+  return data;
+};
+
+export const useProducts = () => {
   return useQuery({
-    queryKey: ["products", category],
-    queryFn:  () =>
-      category
-        ? productService.getByCategory(category)
-        : productService.getAll(),
+    queryKey: ["products"],
+    queryFn: fetchProducts,
   });
 };
