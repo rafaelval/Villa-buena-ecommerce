@@ -24,23 +24,21 @@ export const Home = () => {
 
   const { data: categories = [] } = useCategories();
 
-  const products = productsData?.products || [];
-
   const limit = 12;
 
-  // 🔥 Filter + Sort (client-side)
+  // filtrado y organizacion dentro de usememo
   const processedProducts = useMemo(() => {
+    const products = productsData?.products || [];
+
     let filtered = [...products];
 
     if (category) {
-      filtered = filtered.filter(
-        (p) => p.category === category
-      );
+      filtered = filtered.filter((p) => p.category === category);
     }
 
     if (searchParam) {
       filtered = filtered.filter((p) =>
-        p.title.toLowerCase().includes(searchParam.toLowerCase())
+        p.title.toLowerCase().includes(searchParam.toLowerCase()),
       );
     }
 
@@ -53,17 +51,15 @@ export const Home = () => {
     }
 
     return filtered;
-  }, [products, category, searchParam, sort]);
+  }, [productsData, category, searchParam, sort]);
 
-  // 🔥 Client-side pagination
   const totalPages = Math.ceil(processedProducts.length / limit);
 
   const paginatedProducts = processedProducts.slice(
     (page - 1) * limit,
-    page * limit
+    page * limit,
   );
 
-  // 🔥 Cleaner URL updates
   const handlePageChange = (newPage) => {
     const params = new URLSearchParams(searchParams);
 
@@ -85,7 +81,6 @@ export const Home = () => {
     <div className="container py-5">
       <h2 className="mb-4">Store</h2>
 
-      {/* FILTERS */}
       <Filters
         className="category-chip"
         category={category}
@@ -95,21 +90,17 @@ export const Home = () => {
         setSearchParams={setSearchParams}
       />
 
-      {/* ERROR */}
       {isError && (
         <div className="alert text-center mb-4">
           <h5>⚠️ Error loading products</h5>
           <p>{error?.message || "Something went wrong."}</p>
-          <button
-            className="btn-sm"
-            onClick={() => refetch()}
-          >
+          <button className="btn-sm" onClick={() => refetch()}>
             Try Again
           </button>
         </div>
       )}
 
-      {/* PRODUCTS GRID */}
+      {/*productos*/}
       <div className="row g-4">
         {isLoading ? (
           Array.from({ length: limit }).map((_, index) => (
@@ -126,11 +117,11 @@ export const Home = () => {
         )}
       </div>
 
-      {/* PAGINATION */}
+      {/*paginacion*/}
       {!isLoading && totalPages > 1 && (
         <div className="d-flex justify-content-center mt-5 gap-2">
           <button
-            className="btn btn-outline-custom btn-sm"
+            className="btn-secondary-custom btn-sm"
             disabled={page === 1}
             onClick={() => handlePageChange(page - 1)}
           >
@@ -142,7 +133,7 @@ export const Home = () => {
           </span>
 
           <button
-            className="btn btn-outline-custom btn-sm"
+            className="btn-secondary-custom btn-sm"
             disabled={page === totalPages}
             onClick={() => handlePageChange(page + 1)}
           >

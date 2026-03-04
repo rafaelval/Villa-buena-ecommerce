@@ -2,10 +2,7 @@ const SkeletonCard = () => {
   return (
     <div className="col-md-4 col-lg-3 mb-4">
       <div className="card h-100 shadow-sm p-3">
-        <div
-          className="placeholder-glow"
-          style={{ height: "200px" }}
-        >
+        <div className="placeholder-glow" style={{ height: "200px" }}>
           <span className="placeholder col-12 h-100"></span>
         </div>
 

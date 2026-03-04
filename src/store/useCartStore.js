@@ -53,6 +53,11 @@ export const useCartStore = create(
             (item) => item.id !== id
           ),
         })),
+
+      clearCart: () =>
+        set(() => ({
+          cart: [],
+        })),
     }),
     {
       name: "cart-storage",

@@ -2,10 +2,12 @@ import { useParams, useNavigate } from "react-router-dom";
 import { useProduct } from "../features/products/useProduct";
 import { useCartStore } from "../store/useCartStore";
 import { useState } from "react";
+import { useUIStore } from "../store/uiStore";
 
 export const ProductDetail = () => {
   const { id } = useParams();
   const navigate = useNavigate();
+  const showToast = useUIStore((state) => state.showToast);
 
   const numericId = Number(id);
 
@@ -30,7 +32,7 @@ export const ProductDetail = () => {
         <div className="alert alert-warning text-center">
           <h4>Product not found</h4>
           <button
-            className="btn btn-outline-secondary mt-3"
+            className="btn-secondary-custom mb-4"
             onClick={() => navigate("/")}
           >
             ← Back to Store
@@ -52,6 +54,7 @@ export const ProductDetail = () => {
       price: product.price,
       image: product.thumbnail,
     });
+    showToast("Added to cart 🛒");
   };
 
   return (
@@ -64,7 +67,7 @@ export const ProductDetail = () => {
       </button>
 
       <div className="row g-5">
-        {/* Images */}
+        {/*contenedor de miniaturas*/}
         <div className="col-md-6">
           <div className="d-flex">
             <div className="me-3">
@@ -74,8 +77,8 @@ export const ProductDetail = () => {
                   src={img}
                   alt={product.title}
                   onClick={() => setSelectedImage(img)}
-                  className={`img-thumbnail mb-2 ${
-                    mainImage === img ? "border-primary border-2" : ""
+                  className={`product-thumb mb-2 ${
+                    mainImage === img ? "active" : ""
                   }`}
                   style={{
                     width: "70px",
@@ -102,10 +105,10 @@ export const ProductDetail = () => {
         </div>
 
         {/* Info */}
-        <div className="col-md-6">
+        <div className="col-md-6 product-detail-card p-4">
           <h3>{product.title}</h3>
 
-          {/* DummyJSON rating */}
+          {/*calificaciones*/}
           {product.rating && (
             <div className="mb-3">
               <div className="d-flex align-items-center">
@@ -132,7 +135,7 @@ export const ProductDetail = () => {
             </div>
           )}
 
-          <h4 className="text-danger mt-3">
+          <h4 className="product-price mt-3">
             ${product.price.toFixed(2)}
             {product.discountPercentage && (
               <span className="badge bg-success ms-2">
@@ -145,14 +148,14 @@ export const ProductDetail = () => {
 
           <div className="d-grid gap-3 mt-4">
             <button
-              className="btn btn-warning btn-lg"
+              className="btn-primary-custom btn-lg"
               onClick={handleAddToCart}
             >
               Add to Cart
             </button>
 
             <button
-              className="btn btn-dark btn-lg"
+              className="btn-secondary-custom btn-lg"
               onClick={() => navigate("/cart")}
             >
               Buy Now

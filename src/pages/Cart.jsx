@@ -25,7 +25,7 @@ export const Cart = () => {
       <h2 className="mb-4">Shopping Cart</h2>
 
       <div className="row">
-        {/* LEFT - PRODUCTS */}
+        {/*listado de productos */}
         <div className="col-md-8">
           {cart.map((item) => (
             <div key={item.id} className="card mb-3 shadow-sm">
@@ -54,7 +54,7 @@ export const Cart = () => {
                       Unit: ${item.price.toFixed(2)}
                     </p>
 
-                    {/* QTY Controls */}
+                    {/*controles de cantidad*/}
                     <div className="qty-control m-md-2">
                       <button
                         className="qty-btn"
@@ -86,7 +86,7 @@ export const Cart = () => {
           ))}
         </div>
 
-        {/* RIGHT - SUMMARY */}
+        {/*resumen de compra*/}
         <div className="col-md-4">
           <div className="card shadow-sm p-4 summary-sticky">
             <h5 className="mb-3">Order Summary</h5>

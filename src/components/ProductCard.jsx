@@ -1,8 +1,10 @@
 import { Link } from "react-router-dom";
 import { useCartStore } from "../store/useCartStore";
+import { useUIStore } from "../store/uiStore";
 
 const ProductCard = ({ product }) => {
   const addToCart = useCartStore((state) => state.addToCart);
+  const showToast = useUIStore((state) => state.showToast);
 
   return (
     <div className="col-md-4 col-lg-3 mb-4 pt">
@@ -33,14 +35,16 @@ const ProductCard = ({ product }) => {
 
             <button
               className="btn-primary-custom w-50"
-              onClick={() =>
+              onClick={() => {
                 addToCart({
                   id: product.id,
                   title: product.title,
                   price: product.price,
                   thumbnail: product.thumbnail,
-                })
-              }
+                });
+
+                showToast("Added to cart 🛒");
+              }}
             >
               Add
             </button>
