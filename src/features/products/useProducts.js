@@ -1,9 +1,12 @@
 import { useQuery } from "@tanstack/react-query";
 import { productService } from "../../services/productService";
 
-export const useProducts = () => {
+export const useProducts = (category) => {
   return useQuery({
-    queryKey: ["products"],
-    queryFn: productService.getAll,
+    queryKey: ["products", category],
+    queryFn:  () =>
+      category
+        ? productService.getByCategory(category)
+        : productService.getAll(),
   });
 };

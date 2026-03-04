@@ -10,4 +10,8 @@ export const productService = {
     const { data } = await api.get(`/products/${id}`);
     return data;
   },
+  getByCategory: async (category) => {
+    const { data } = await api.get(`/products/category/${category}`);
+    return data;
+  },
 };
