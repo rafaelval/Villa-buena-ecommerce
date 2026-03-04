@@ -11,13 +11,13 @@ const Navbar = () => {
 
   return (
     <nav className="navbar-custom">
-      <div className="container d-flex justify-content-between align-items-center py-3">
+      <div className="container d-flex justify-content-between align-items-center py-1">
         <Link to="/" className="d-flex align-items-center">
           <img
             src="/logo.png"
             alt="Villa Buena"
             style={{
-              height: "65px",
+              height: "85px",
               maskImage: "radial-gradient(circle, black 80%, transparent 100%)",
             }}
           />

@@ -8,7 +8,7 @@ export const Layout = () => {
   const darkMode = useUIStore((state) => state.darkMode);
 
   useEffect(() => {
-      document.body.classList.remove("light-mode", "dark-mode");
+    document.body.classList.remove("light-mode", "dark-mode");
     document.body.classList.add(darkMode ? "dark-mode" : "light-mode");
   }, [darkMode]);
   return (

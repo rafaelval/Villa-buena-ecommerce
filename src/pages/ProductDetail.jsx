@@ -52,7 +52,7 @@ export const ProductDetail = () => {
       id: product.id,
       title: product.title,
       price: product.price,
-      image: product.thumbnail,
+      thumbnail: product.thumbnail,
     });
     showToast("Added to cart 🛒");
   };

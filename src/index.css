@@ -350,8 +350,8 @@ body.dark-mode input::placeholder {
   position: absolute;
   top: -5px;
   right: -5px;
-  background-color: white;
-  color: #E4572E;
+  background-color: red;
+  color: #ffffff;
   font-size: 0.7rem;
   font-weight: bold;
   padding: 2px 6px;
@@ -412,4 +412,10 @@ body.dark-mode .product-detail-card {
   backdrop-filter: blur(12px);
   border-radius: 16px;
   border: 1px solid rgba(255,255,255,0.08);
+}
+
+/*temporal, para los textos hardcodeados*/
+
+body.dark-mode .text-muted {
+  color: #bdbdbd !important;
 }

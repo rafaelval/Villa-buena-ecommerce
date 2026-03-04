@@ -1,5 +1,5 @@
 import { useCartStore } from "../store/useCartStore";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 export const Cart = () => {
   const { cart, increaseQty, decreaseQty, removeFromCart } = useCartStore();
@@ -45,7 +45,10 @@ export const Cart = () => {
                 <div className="col-md-9">
                   <div className="card-body">
                     <div className="d-flex justify-content-between align-items-start">
-                      <h6 className="mb-1">{item.title}</h6>
+                      <Link to={`/product/${item.id}`}>
+                        <h6 className="mb-1">{item.title}</h6>
+                      </Link>
+
                       <p className="fw-bold text-danger mb-0">
                         ${(item.price * item.qty).toFixed(2)}
                       </p>

@@ -10,10 +10,14 @@ const ProductCard = ({ product }) => {
     <div className="col-md-4 col-lg-3 mb-4 pt">
       <div className="product-card h-100">
         <img
-          src={product.thumbnail || product.images?.[0]}
+          src={product.thumbnail}
           className="card-img-top pt-3"
           alt={product.title}
-          style={{ height: "200px", objectFit: "cover" }}
+          style={{
+            height: "200px",
+            objectFit: "contain",
+            backgroundColor: "#f8f9fa",
+          }}
         />
 
         <div className="card-body d-flex flex-column">
