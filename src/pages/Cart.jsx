@@ -55,18 +55,18 @@ export const Cart = () => {
                     </p>
 
                     {/* QTY Controls */}
-                    <div className="d-flex align-items-center gap-2 mb-2">
+                    <div className="qty-control m-md-2">
                       <button
-                        className="btn btn-outline-dark btn-sm"
+                        className="qty-btn"
                         onClick={() => decreaseQty(item.id)}
                       >
-                        -
+                        −
                       </button>
 
-                      <span>{item.qty}</span>
+                      <span className="qty-value">{item.qty}</span>
 
                       <button
-                        className="btn btn-outline-dark btn-sm"
+                        className="qty-btn"
                         onClick={() => increaseQty(item.id)}
                       >
                         +
@@ -88,7 +88,7 @@ export const Cart = () => {
 
         {/* RIGHT - SUMMARY */}
         <div className="col-md-4">
-          <div className="card shadow-sm p-4">
+          <div className="card shadow-sm p-4 summary-sticky">
             <h5 className="mb-3">Order Summary</h5>
 
             <div className="mb-3">
@@ -110,7 +110,7 @@ export const Cart = () => {
             </div>
 
             <button
-              className="btn btn-warning w-100 py-2"
+              className="btn-primary-custom w-100 py-2"
               onClick={() => navigate("/checkout")}
             >
               Proceed to Checkout

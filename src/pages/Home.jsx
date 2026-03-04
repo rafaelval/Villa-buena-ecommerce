@@ -87,6 +87,7 @@ export const Home = () => {
 
       {/* FILTERS */}
       <Filters
+        className="category-chip"
         category={category}
         categories={categories}
         searchParam={searchParam}
@@ -96,11 +97,11 @@ export const Home = () => {
 
       {/* ERROR */}
       {isError && (
-        <div className="alert alert-danger text-center mb-4">
+        <div className="alert text-center mb-4">
           <h5>⚠️ Error loading products</h5>
           <p>{error?.message || "Something went wrong."}</p>
           <button
-            className="btn btn-outline-danger btn-sm"
+            className="btn-sm"
             onClick={() => refetch()}
           >
             Try Again
@@ -116,7 +117,7 @@ export const Home = () => {
           ))
         ) : paginatedProducts.length === 0 ? (
           <div className="text-center py-5 w-100">
-            <p className="text-muted">No products found</p>
+            <p>No products found</p>
           </div>
         ) : (
           paginatedProducts.map((product) => (
@@ -129,7 +130,7 @@ export const Home = () => {
       {!isLoading && totalPages > 1 && (
         <div className="d-flex justify-content-center mt-5 gap-2">
           <button
-            className="btn btn-outline-dark btn-sm"
+            className="btn btn-outline-custom btn-sm"
             disabled={page === 1}
             onClick={() => handlePageChange(page - 1)}
           >
@@ -141,7 +142,7 @@ export const Home = () => {
           </span>
 
           <button
-            className="btn btn-outline-dark btn-sm"
+            className="btn btn-outline-custom btn-sm"
             disabled={page === totalPages}
             onClick={() => handlePageChange(page + 1)}
           >

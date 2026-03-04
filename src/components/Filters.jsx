@@ -64,27 +64,27 @@ const Filters = ({
 
       {/* CATEGORIES */}
       <div className="mb-4 d-flex gap-2 flex-wrap">
-        <button
-          className={`btn btn-sm ${
-            !category ? "btn-dark" : "btn-outline-dark"
-          }`}
-          onClick={() => handleCategoryChange("")}
-        >
-          All
-        </button>
 
-        {categories.map((cat) => (
-          <button
-            key={cat.slug}
-            className={`btn btn-sm ${
-              category === cat.slug ? "btn-dark" : "btn-outline-dark"
-            }`}
-            onClick={() => handleCategoryChange(cat.slug)}
-          >
-            {cat.name}
-          </button>
-        ))}
-      </div>
+  <button
+    className={`category-chip ${!category ? "active" : ""}`}
+    onClick={() => handleCategoryChange("")}
+  >
+    All
+  </button>
+
+  {categories.map((cat) => (
+    <button
+      key={cat.slug}
+      className={`category-chip ${
+        category === cat.slug ? "active" : ""
+      }`}
+      onClick={() => handleCategoryChange(cat.slug)}
+    >
+      {cat.name}
+    </button>
+  ))}
+
+</div>
     </>
   );
 };

@@ -6,7 +6,7 @@ const ProductCard = ({ product }) => {
 
   return (
     <div className="col-md-4 col-lg-3 mb-4 pt">
-      <div className="card h-100 shadow-sm">
+      <div className="product-card h-100">
         <img
           src={product.thumbnail || product.images?.[0]}
           className="card-img-top pt-3"
@@ -19,20 +19,20 @@ const ProductCard = ({ product }) => {
             {product.title}
           </h6>
 
-          <p className="fw-bold mt-auto text-primary">
+          <p className="fw-bold mt-auto product-price">
             ${Number(product.price).toFixed(2)}
           </p>
 
           <div className="d-flex gap-2">
             <Link
               to={`/product/${product.id}`}
-              className="btn btn-outline-dark btn-sm w-50"
+              className="btn-secondary-custom w-50 text-center"
             >
               View
             </Link>
 
             <button
-              className="btn btn-dark btn-sm w-50"
+              className="btn-primary-custom w-50"
               onClick={() =>
                 addToCart({
                   id: product.id,
