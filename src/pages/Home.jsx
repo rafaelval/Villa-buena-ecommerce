@@ -3,8 +3,8 @@ import { useMemo } from "react";
 import ProductCard from "../components/ProductCard";
 import SkeletonCard from "../components/SkeletonCard";
 import Filters from "../components/Filters";
-import { useProducts } from "../features/products/useProducts";
-import { useCategories } from "../features/products/useCategories";
+import { useProducts } from "../hooks/useProducts";
+import { useCategories } from "../hooks/useCategories";
 
 export const Home = () => {
   const [searchParams, setSearchParams] = useSearchParams();
