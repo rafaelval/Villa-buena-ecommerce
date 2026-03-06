@@ -1,3 +1,4 @@
+import { CheckoutStepper } from "../components/checkout/CheckoutStepper";
 import { useCartStore } from "../store/useCartStore";
 import { Link, useNavigate } from "react-router-dom";
 
@@ -22,6 +23,7 @@ export const Cart = () => {
 
   return (
     <div className="container py-5">
+      <CheckoutStepper step={1} />
       <h2 className="mb-4">Shopping Cart</h2>
 
       <div className="row">
@@ -63,7 +65,7 @@ export const Cart = () => {
                         className="qty-btn"
                         onClick={() => decreaseQty(item.id)}
                       >
-                        −
+                        -
                       </button>
 
                       <span className="qty-value">{item.qty}</span>
@@ -114,7 +116,7 @@ export const Cart = () => {
 
             <button
               className="btn-primary-custom w-100 py-2"
-              onClick={() => navigate("/checkout")}
+              onClick={() => navigate("/checkout/shipping")}
             >
               Proceed to Checkout
             </button>

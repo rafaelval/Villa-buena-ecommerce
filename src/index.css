@@ -10,6 +10,23 @@
   --color-white: #FFFFFF;
 }
 
+/* FIX CHROME AUTOFILL DARK MODE */
+
+body.dark-mode input:-webkit-autofill,
+body.dark-mode input:-webkit-autofill:hover,
+body.dark-mode input:-webkit-autofill:focus,
+body.dark-mode textarea:-webkit-autofill,
+body.dark-mode select:-webkit-autofill {
+
+  -webkit-text-fill-color: white;
+
+  -webkit-box-shadow: 0 0 0px 1000px rgba(255,255,255,0.05) inset;
+
+  transition: background-color 5000s ease-in-out 0s;
+
+  border:1px solid rgba(255,255,255,0.12);
+}
+
 /* body*/
 
 body.light-mode {
@@ -418,4 +435,129 @@ body.dark-mode .product-detail-card {
 
 body.dark-mode .text-muted {
   color: #bdbdbd !important;
+}
+
+/* checkout cards */
+
+.checkout-card,
+.checkout-summary{
+  border-radius:16px;
+  border:1px solid rgba(0,0,0,0.05);
+  transition: all .25s ease;
+}
+
+/* inputs */
+
+.custom-input{
+  border-radius:10px;
+  padding:10px 12px;
+}
+
+/*resumen persistente en pantalla*/
+
+.sticky-summary{
+  position: sticky;
+  top: 100px;
+}
+
+/* hover items */
+
+.summary-item{
+  font-size:14px;
+}
+
+/* boton */
+
+.checkout-btn{
+  font-weight:600;
+  letter-spacing:.3px;
+}
+
+body.dark-mode .checkout-card,
+body.dark-mode .checkout-summary{
+  background: rgba(255,255,255,0.05);
+  backdrop-filter: blur(10px);
+  border:1px solid rgba(255,255,255,0.08);
+}
+
+body.dark-mode .custom-input{
+  background: rgba(255,255,255,0.05);
+  border:1px solid rgba(255,255,255,0.1);
+  
+}
+
+body.dark-mode .custom-input:focus{
+  background: rgba(255,255,255,0.08);
+  border:1px solid rgba(255,255,255,0.25);
+  color:white;
+  outline:none;
+  box-shadow:none;
+}
+
+body.dark-mode .custom-input::placeholder{
+  color: rgba(255,255,255,0.5);
+}
+
+/*boton checkout*/
+
+.checkout-btn{
+  background: linear-gradient(
+    90deg,
+    rgba(224,74,36,1) 0%,
+    rgba(245,126,74,1) 100%
+  );
+
+  color:white;
+  font-weight:600;
+  border:none;
+  border-radius:10px;
+
+  transition: all .25s ease;
+}
+
+.checkout-btn:hover{
+  transform: translateY(-1px);
+  box-shadow:0 6px 14px rgba(0,0,0,0.25);
+}
+
+.checkout-btn:active{
+  transform: translateY(0);
+}
+
+.checkout-card label{
+  font-size:14px;
+  opacity:.8;
+}
+
+/* stepper */
+
+.checkout-stepper {
+  max-width: 500px;
+  margin: auto;
+}
+
+.step {
+  text-align: center;
+  flex: 1;
+}
+
+.step-circle {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  background: #ddd;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: auto;
+  font-weight: 600;
+}
+
+.step.active .step-circle {
+  background: #000;
+  color: white;
+}
+
+.step-label {
+  font-size: 0.85rem;
 }

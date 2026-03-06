@@ -2,7 +2,9 @@ import { createBrowserRouter } from "react-router-dom";
 import { Home } from "../pages/Home";
 import { ProductDetail } from "../pages/ProductDetail";
 import { Cart } from "../pages/Cart";
-import { Checkout } from "../pages/Checkout";
+import { CheckoutShipping } from "../pages/CheckoutShipping";
+import { CheckoutPayment } from "../pages/CheckoutPayment";
+import { PaymentSuccess } from "../pages/PaymentSuccess";
 import { Layout } from "./layout";
 
 export const router = createBrowserRouter([
@@ -13,11 +15,9 @@ export const router = createBrowserRouter([
       { index: true, element: <Home /> },
       { path: "product/:id", element: <ProductDetail /> },
       { path: "cart", element: <Cart /> },
-      { path: "checkout", element: <Checkout /> },
-      {
-        path: "payment/success",
-        element: <h1 className="text-center py-5">Payment Successful 🎉</h1>,
-      },
+      { path: "checkout/shipping", element: <CheckoutShipping /> },
+      { path: "checkout/payment", element: <CheckoutPayment /> },
+      { path: "payment/success", element: <PaymentSuccess /> },
     ],
   },
 ]);
