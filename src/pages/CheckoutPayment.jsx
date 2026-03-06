@@ -2,9 +2,11 @@ import { useNavigate } from "react-router-dom";
 import { OrderSummary } from "../components/checkout/OrderSummary";
 import { CheckoutStepper } from "../components/checkout/CheckoutStepper";
 import { useCartStore } from "../store/useCartStore";
+import { useState } from "react";
 
 export const CheckoutPayment = () => {
   const navigate = useNavigate();
+  const [processing, setProcessing] = useState(false);
 
   const cart = useCartStore((state) => state.cart);
   const clearCart = useCartStore((state) => state.clearCart);
@@ -16,8 +18,12 @@ export const CheckoutPayment = () => {
       return navigate("/");
     }
 
-    clearCart();
-    navigate("/payment/success");
+    setProcessing(true);
+
+    setTimeout(() => {
+      clearCart();
+      navigate("/payment/success");
+    }, 1500);
   };
 
   return (
@@ -62,8 +68,15 @@ export const CheckoutPayment = () => {
                 </div>
               </div>
 
-              <button className="btn-primary-custom w-100 py-2">
-                Pay Now
+              <button
+                type="submit"
+                className="btn-primary-custom w-100 py-2 d-flex justify-content-center align-items-center gap-2"
+                disabled={processing}
+              >
+                {processing && (
+                  <span className="spinner-border spinner-border-sm"></span>
+                )}
+                {processing ? "Processing Payment..." : "Pay Now"}
               </button>
             </form>
           </div>

@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useCartStore } from "../store/useCartStore";
 import { Link } from "react-router-dom";
+import { CheckCircle } from "lucide-react";
 
 export const PaymentSuccess = () => {
   const clearCart = useCartStore((state) => state.clearCart);
@@ -16,19 +17,28 @@ export const PaymentSuccess = () => {
   return (
     <div className="container py-5 text-center">
 
-      <h1 className="mb-4">Payment Successful 🎉</h1>
+      <div className="card p-5 mx-auto shadow-sm" style={{maxWidth:"500px"}}>
 
-      <h4 className="mb-3">
-        Order ID: <strong>{orderId}</strong>
-      </h4>
+        <CheckCircle size={64} color="#22c55e" className="mb-3" />
 
-      <p className="mb-4">
-        Thank you for your purchase.
-      </p>
+        <h2 className="mb-3">Payment Successful</h2>
 
-      <Link to="/" className="btn-primary-custom w-100 py-2">
-        Continue Shopping
-      </Link>
+        <p className="text-muted">
+          Thank you for your purchase.
+        </p>
+
+        <p className="mt-3">
+          Order ID: <strong>{orderId}</strong>
+        </p>
+
+        <Link
+          to="/"
+          className="btn-primary-custom w-100 py-2"
+        >
+          Continue Shopping
+        </Link>
+
+      </div>
 
     </div>
   );

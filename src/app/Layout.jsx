@@ -3,6 +3,7 @@ import Navbar from "../components/Navbar";
 import { useUIStore } from "../store/uiStore";
 import { useEffect } from "react";
 import Toast from "../components/Toast";
+import { CartDrawer } from "../components/cart/CartDrawer";
 
 export const Layout = () => {
   const darkMode = useUIStore((state) => state.darkMode);
@@ -15,6 +16,7 @@ export const Layout = () => {
     <>
       <Toast />
       <Navbar />
+      <CartDrawer />
       <Outlet />
     </>
   );

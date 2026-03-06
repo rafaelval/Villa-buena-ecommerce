@@ -10,6 +10,12 @@ export const useUIStore = create(
         set((state) => ({
           darkMode: !state.darkMode,
         })),
+      //*cart drawer*/
+      isCartOpen: false,
+
+      openCart: () => set({ isCartOpen: true }),
+
+      closeCart: () => set({ isCartOpen: false }),
 
       /*toast*/
       toast: null,
@@ -18,7 +24,12 @@ export const useUIStore = create(
         set({ toast: message });
 
         setTimeout(() => {
-          set({ toast: null });
+          set((state) => {
+            if (state.toast === message) {
+              return { toast: null };
+            }
+            return {};
+          });
         }, 2000);
       },
     }),
