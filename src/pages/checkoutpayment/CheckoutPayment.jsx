@@ -3,10 +3,12 @@ import { useCartStore } from "../../store/useCartStore";
 import { useState } from "react";
 import { CheckoutStepper } from "../../components/checkoutStepper/CheckoutStepper";
 import { OrderSummary } from "../../components/orderSummary/OrderSummary";
+import { useAuth0 } from "@auth0/auth0-react";
 import "./CheckoutPayment.css";
 
 export const CheckoutPayment = () => {
   const navigate = useNavigate();
+  const { isAuthenticated, loginWithRedirect } = useAuth0();
   const [processing, setProcessing] = useState(false);
   const [errors, setErrors] = useState({});
 
@@ -21,15 +23,12 @@ export const CheckoutPayment = () => {
 
   const validateExpiry = (value) => {
     if (value.length < 5) return "Format: MM/YY";
-
     const [month, year] = value.split("/").map(Number);
     const currentYear = new Date().getFullYear() % 100;
     const currentMonth = new Date().getMonth() + 1;
-
     if (month < 1 || month > 12) return "Invalid month";
     if (year < currentYear) return "Year expired";
     if (year === currentYear && month < currentMonth) return "Month expired";
-
     return null;
   };
 
@@ -58,8 +57,15 @@ export const CheckoutPayment = () => {
 
   const handlePayment = (e) => {
     e.preventDefault();
-    const newErrors = {};
 
+    if (!isAuthenticated) {
+      loginWithRedirect({
+        appState: { returnTo: "/checkout/payment" },
+      });
+      return;
+    }
+
+    const newErrors = {};
     if (formData.cardNumber.length < 19)
       newErrors.cardNumber = "Full card number required";
     const expiryError = validateExpiry(formData.expiryDate);
@@ -103,7 +109,6 @@ export const CheckoutPayment = () => {
                   onChange={handleChange}
                   required
                 />
-  {/* TODO: spinner en el boton de pago */}
                 <div className="error-container">{errors.cardNumber}</div>
               </div>
 

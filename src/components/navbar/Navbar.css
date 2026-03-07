@@ -171,3 +171,55 @@ body.light-mode .navbar-theme-toggle:hover {
     padding-right: 15px;
   }
 }
+
+.navbar-user-name {
+  color: white;
+  font-weight: 500;
+  font-size: 0.9rem;
+}
+
+.navbar-auth-btn {
+  background: rgba(0, 0, 0, 0.2);
+  border:none;
+  color: white;
+  font-weight: 600;
+  font-size: 0.85rem;
+  padding: 6px 18px;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.navbar-auth-btn:hover {
+  background: rgba(0, 0, 0, 0.3);
+  color: white;
+  border:none;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.navbar-auth-btn:active {
+  transform: translateY(0);
+}
+
+.navbar-auth-btn--outline {
+  background: rgba(0, 0, 0, 0.2);
+}
+
+.navbar-auth-btn--outline:hover {
+  background: rgba(0, 0, 0, 0.3);
+  color: white;
+  border:none;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+@media (max-width: 576px) {
+  .navbar-auth-btn {
+    padding: 5px 12px;
+    font-size: 0.8rem;
+  }
+
+  .navbar-user-name {
+    display: none;
+  }
+}
