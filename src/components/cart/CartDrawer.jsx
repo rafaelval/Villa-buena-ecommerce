@@ -25,7 +25,7 @@ export const CartDrawer = () => {
 
       {/* drawer */}
       <div className={`cart-drawer ${isCartOpen ? "open" : ""}`}>
-        {/* HEADER */}
+        {/* header */}
 
         <div className="cart-header">
           <h5>Shopping Cart ({totalItems})</h5>
@@ -35,7 +35,7 @@ export const CartDrawer = () => {
           </button>
         </div>
 
-        {/* ITEMS */}
+        {/* items */}
 
         <div className="cart-items">
           {cart.length === 0 && (
@@ -53,16 +53,16 @@ export const CartDrawer = () => {
 
                 <div className="cart-item-controls">
                   <div className="qty-controls">
-                    <button onClick={() => decreaseQty(item.id)}>-</button>
+                    <button onClick={() => decreaseQty(item.id)}><Minus size={20}/></button>
                     <span>{item.qty}</span>
-                    <button onClick={() => increaseQty(item.id)}>+</button>
+                    <button onClick={() => increaseQty(item.id)}><Plus size={20}/></button>
                   </div>
 
                   <button
                     className="remove-btn"
                     onClick={() => removeFromCart(item.id)}
                   >
-                    remove
+                    <Trash2 size={20}/>
                   </button>
                 </div>
               </div>
@@ -70,7 +70,7 @@ export const CartDrawer = () => {
           ))}
         </div>
 
-        {/* FOOTER */}
+        {/* footer */}
 
         <div className="cart-footer">
           <div className="cart-total">

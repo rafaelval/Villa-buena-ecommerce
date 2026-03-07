@@ -5,7 +5,6 @@
   padding: 0 20px;
 }
 
-/* contenedor flex para los steps */
 .checkout-stepper .d-flex {
   display: flex;
   justify-content: space-between;
@@ -14,7 +13,6 @@
   width: 100%;
 }
 
-/* linea conectora entre steps */
 .checkout-stepper .d-flex::before {
   content: '';
   position: absolute;
@@ -26,7 +24,6 @@
   z-index: 1;
 }
 
-/* step individual */
 .step {
   text-align: center;
   position: relative;
@@ -35,7 +32,6 @@
   background: transparent;
 }
 
-/* circulo del step */
 .step-circle {
   width: 50px;
   height: 50px;
@@ -55,7 +51,6 @@
   z-index: 3;
 }
 
-/* label del step */
 .step-label {
   font-size: 0.9rem;
   font-weight: 600;
@@ -67,9 +62,6 @@
   white-space: nowrap;
 }
 
-/* ESTADOS DEL STEP*/
-
-/* step activo */
 .step.active .step-circle {
   background: var(--color-primary, #E4572E);
   border-color: var(--color-primary, #E4572E);
@@ -83,7 +75,6 @@
   font-weight: 700;
 }
 
-/* step completado */
 .step.completed .step-circle {
   background: #10b981;
   border-color: #10b981;
@@ -96,7 +87,6 @@
   font-weight: 600;
 }
 
-/* color del conector según progreso */
 .checkout-stepper[data-step="1"] .d-flex::before {
   background: linear-gradient(90deg, #10b981 0%, #10b981 33%, #e0e0e0 33%, #e0e0e0 100%);
 }
@@ -109,7 +99,6 @@
   background: #10b981;
 }
 
-/* dark mode */
 body.dark-mode .checkout-stepper .d-flex::before {
   background: #3a3a3a;
 }
@@ -141,7 +130,6 @@ body.dark-mode .step.completed .step-label {
   color: #10b981;
 }
 
-/* Ajustes dark mode para el conector */
 body.dark-mode .checkout-stepper[data-step="1"] .d-flex::before {
   background: linear-gradient(90deg, #10b981 0%, #10b981 33%, #3a3a3a 33%, #3a3a3a 100%);
 }
@@ -154,7 +142,6 @@ body.dark-mode .checkout-stepper[data-step="3"] .d-flex::before {
   background: #10b981;
 }
 
-/* light mode */
 body.light-mode .step-circle {
   background: white;
   border-color: #ddd;
@@ -165,7 +152,6 @@ body.light-mode .step.active .step-label {
   color: var(--color-primary, #E4572E);
 }
 
-/* responsive */
 @media (max-width: 768px) {
   .checkout-stepper {
     margin: 1.5rem auto 2rem auto;

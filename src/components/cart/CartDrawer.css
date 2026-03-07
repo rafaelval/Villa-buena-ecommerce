@@ -15,7 +15,6 @@
   pointer-events: all;
 }
 
-/* drawer Panel (contenedor interno) */
 .cart-drawer {
   position: fixed;
   top: 90px;
@@ -35,7 +34,6 @@
   transform: translateX(0);
 }
 
-/* dark mode */
 body.dark-mode .cart-drawer {
   background: rgba(36, 36, 36, 0.7);
   backdrop-filter: blur(12px);
@@ -93,7 +91,6 @@ body.dark-mode .view-cart-btn:hover {
   background: rgba(255, 255, 255, 0.12);
 }
 
-/* light mode */
 body.light-mode .cart-drawer {
   background: rgba(255, 255, 255, 0.27);
   backdrop-filter: blur(12px);
@@ -152,7 +149,6 @@ body.light-mode .view-cart-btn:hover {
   background: rgba(0, 0, 0, 0.06);
 }
 
-/* header */
 .cart-header {
   display: flex;
   justify-content: space-between;
@@ -179,7 +175,6 @@ body.light-mode .view-cart-btn:hover {
   opacity: 1;
 }
 
-/* items container */
 .cart-items {
   flex: 1;
   overflow-y: auto;
@@ -189,7 +184,6 @@ body.light-mode .view-cart-btn:hover {
   padding-right: 6px;
 }
 
-/* scrollbar */
 .cart-items::-webkit-scrollbar {
   width: 6px;
 }
@@ -198,14 +192,12 @@ body.light-mode .view-cart-btn:hover {
   border-radius: 10px;
 }
 
-/* empty state */
 .cart-empty {
   text-align: center;
   padding: 40px 20px;
   opacity: 0.7;
 }
 
-/* cart item */
 .cart-item {
   display: flex;
   gap: 12px;
@@ -241,7 +233,6 @@ body.light-mode .view-cart-btn:hover {
   font-size: 14px;
 }
 
-/* quantity controls */
 .cart-item-controls {
   display: flex;
   justify-content: space-between;
@@ -273,7 +264,6 @@ body.light-mode .view-cart-btn:hover {
   text-align: center;
 }
 
-/* remove button */
 .remove-btn {
   background: none;
   border: none;
@@ -286,7 +276,6 @@ body.light-mode .view-cart-btn:hover {
   text-decoration: underline;
 }
 
-/* footer */
 .cart-footer {
   padding-top: 16px;
   margin-top: 16px;
@@ -299,7 +288,6 @@ body.light-mode .view-cart-btn:hover {
   font-weight: 600;
 }
 
-/* checkout button */
 .cart-drawer .checkout-btn {
   width: 100%;
   padding: 12px;
@@ -322,7 +310,6 @@ body.light-mode .view-cart-btn:hover {
   cursor: not-allowed;
 }
 
-/* view cart button */
 .view-cart-btn {
   width: 100%;
   margin-top: 10px;
@@ -334,7 +321,6 @@ body.light-mode .view-cart-btn:hover {
   border: none;
 }
 
-/* responsive */
 @media (max-width: 480px) {
   .cart-drawer {
     width: 100%;

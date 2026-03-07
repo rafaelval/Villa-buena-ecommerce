@@ -13,7 +13,6 @@ export const CheckoutShipping = () => {
 
   return (
     <div className="container shipping-container">
-      {/* Stepper con su propio wrapper para controlar espaciado */}
       <div className="shipping-stepper-wrapper">
         <CheckoutStepper step={2} />
       </div>
@@ -21,7 +20,7 @@ export const CheckoutShipping = () => {
       <h2 className="shipping-title">Shipping Information</h2>
 
       <div className="row">
-        {/* Formulario de envío - columna izquierda */}
+        {/* formulario de envio */}
         <div className="col-md-6 shipping-form-col">
           <form onSubmit={handleSubmit} className="shipping-form">
             <input
@@ -51,7 +50,7 @@ export const CheckoutShipping = () => {
           </form>
         </div>
 
-        {/* Order Summary - columna derecha con sticky */}
+        {/* resumen de compra */}
         <div className="col-md-5 offset-md-1 shipping-summary-col">
           <OrderSummary />
         </div>

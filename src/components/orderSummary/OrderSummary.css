@@ -8,14 +8,12 @@
   width: 100%;
 }
 
-/* light mode */
 body.light-mode .order-summary-card {
   background: white !important;
   border: 1px solid #e2e8f0 !important;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05) !important;
 }
 
-/* dark mode */
 body.dark-mode .order-summary-card {
   background: rgba(36, 36, 36, 0.7) !important;
   backdrop-filter: blur(12px) !important;
@@ -24,7 +22,6 @@ body.dark-mode .order-summary-card {
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2) !important;
 }
 
-/* titulo */
 .order-summary-title {
   font-size: 1.25rem;
   font-weight: 700;
@@ -43,7 +40,6 @@ body.dark-mode .order-summary-title {
   border-bottom-color: rgba(255, 255, 255, 0.1);
 }
 
-/* items del carrito */
 .order-summary-item {
   display: flex;
   justify-content: space-between;
@@ -115,7 +111,6 @@ body.dark-mode .order-summary-item-price {
   color: white;
 }
 
-/* divisor */
 .order-summary-divider {
   margin: 1rem 0;
   border: none;
@@ -130,7 +125,6 @@ body.dark-mode .order-summary-divider {
   background: rgba(255, 255, 255, 0.1);
 }
 
-/* filas de totales */
 .order-summary-row {
   display: flex;
   justify-content: space-between;
@@ -151,7 +145,6 @@ body.dark-mode .order-summary-label {
   font-weight: 500;
 }
 
-/* total final */
 .order-summary-total {
   display: flex;
   justify-content: space-between;
@@ -173,7 +166,6 @@ body.dark-mode .order-summary-total {
   font-size: 1.25rem;
 }
 
-/* empty state */
 .order-summary-empty {
   text-align: center;
   padding: 2rem 1rem;
@@ -192,7 +184,6 @@ body.dark-mode .order-summary-empty-message {
   color: #a0aec0;
 }
 
-/* responsive */
 @media (max-width: 768px) {
   .order-summary-card {
     position: static;

@@ -1,17 +1,11 @@
-/* ======================================
-   PAYMENT SUCCESS COMPONENT
-   ====================================== */
-
-/* Contenedor principal */
 .success-container {
-  min-height: calc(100vh - 200px); /* Altura mínima considerando navbar y footer */
+  min-height: calc(100vh - 200px);
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 2rem 1rem;
 }
 
-/* Tarjeta de éxito */
 .success-card {
   max-width: 500px;
   width: 100%;
@@ -23,14 +17,12 @@
   animation: successFadeIn 0.5s ease;
 }
 
-/* Light mode */
 body.light-mode .success-card {
   background: white;
   border: 1px solid #e2e8f0;
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
 }
 
-/* Dark mode */
 body.dark-mode .success-card {
   background: rgba(36, 36, 36, 0.7);
   backdrop-filter: blur(12px);
@@ -39,13 +31,11 @@ body.dark-mode .success-card {
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
 }
 
-/* Ícono de éxito */
 .success-icon {
   margin-bottom: 1.5rem;
   animation: successIconPop 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
 }
 
-/* Título */
 .success-title {
   font-size: 2rem;
   font-weight: 700;
@@ -74,7 +64,6 @@ body.dark-mode .success-title {
   color: white;
 }
 
-/* Mensaje */
 .success-message {
   font-size: 1rem;
   line-height: 1.6;
@@ -92,7 +81,6 @@ body.dark-mode .success-message {
   color: #a0aec0;
 }
 
-/* Contenedor Order ID */
 .success-order-id {
   background: transparent;
   padding: 1rem;
@@ -136,7 +124,6 @@ body.dark-mode .success-order-label {
   background-clip: text;
 }
 
-/* Botón */
 .success-btn {
   display: inline-block;
   width: 100%;
@@ -164,9 +151,6 @@ body.dark-mode .success-order-label {
   transform: translateY(0);
 }
 
-/* ======================================
-   ANIMACIONES
-   ====================================== */
 @keyframes successFadeIn {
   from {
     opacity: 0;
@@ -192,9 +176,6 @@ body.dark-mode .success-order-label {
   }
 }
 
-/* ======================================
-   RESPONSIVE
-   ====================================== */
 @media (max-width: 768px) {
   .success-card {
     padding: 2rem 1.5rem;
@@ -247,9 +228,6 @@ body.dark-mode .success-order-label {
   }
 }
 
-/* ======================================
-   OPCIONAL: CONFETTI O DECORACIONES
-   ====================================== */
 .success-card::before {
   content: '';
   position: absolute;

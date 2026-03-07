@@ -1,51 +1,54 @@
 import { useEffect, useState } from "react";
 import { useUIStore } from "../../store/uiStore";
+import { ShoppingCart, AlertCircle } from "lucide-react";
 import "./Toast.css";
 
 const Toast = () => {
   const toast = useUIStore((state) => state.toast);
   const hideToast = useUIStore((state) => state.hideToast);
-  const [isExiting, setIsExiting] = useState(false);
 
-  const visible = !!toast || isExiting;
+  const [isExiting, setIsExiting] = useState(false);
+  const [prevToast, setPrevToast] = useState(null);
+
+  if (toast !== prevToast) {
+    setIsExiting(false);
+    setPrevToast(toast);
+  }
 
   useEffect(() => {
     if (!toast) return;
-
-    const resetTimer = setTimeout(() => setIsExiting(false), 0);
 
     const timer = setTimeout(() => {
       setIsExiting(true);
     }, 2500);
 
-    return () => {
-      clearTimeout(resetTimer);
-      clearTimeout(timer);
-    };
-  }, [toast]);
-
-  useEffect(() => {
-    if (!isExiting) return;
-
-    const exitTimer = setTimeout(() => {
+    const cleanupTimer = setTimeout(() => {
       hideToast();
-      setIsExiting(false);
-    }, 300);
+    }, 2850);
 
-    return () => clearTimeout(exitTimer);
-  }, [isExiting, hideToast]);
+    return () => {
+      clearTimeout(timer);
+      clearTimeout(cleanupTimer);
+    };
+  }, [toast, hideToast]);
 
-  if (!visible) return null;
+  if (!toast) return null;
 
-  const isSuccess = toast?.includes("🛒");
-  const isError = toast?.includes("❌") || toast?.includes("Error");
+  const message = typeof toast === "string" ? toast : "";
+  const isSuccess = message.toLowerCase().includes("added");
+  const isError =
+    message.toLowerCase().includes("error") || message.includes("❌");
 
   return (
     <div
       className={`custom-toast ${isSuccess ? "success" : ""} ${isError ? "error" : ""} ${isExiting ? "toast-exit" : ""}`}
       role="alert"
     >
-      {toast}
+      <div className="d-flex align-items-center gap-2">
+        {isSuccess && <ShoppingCart size={20} strokeWidth={2.5} />}
+        {isError && <AlertCircle size={20} strokeWidth={2.5} />}
+        <span>{message}</span>
+      </div>
     </div>
   );
 };

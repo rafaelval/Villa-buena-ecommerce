@@ -1,22 +1,13 @@
-/* ======================================
-   CHECKOUT PAYMENT COMPONENT
-   ====================================== */
-
-/* Contenedor principal */
 .payment-container {
   padding-top: 0;
   padding-bottom: 3rem;
 }
 
-/* Wrapper del stepper */
 .payment-stepper-wrapper {
   padding-top: 1rem;
   padding-bottom: 2rem;
 }
 
-/* ======================================
-   TARJETA DE PAGO
-   ====================================== */
 .payment-card {
   border-radius: 24px !important;
   padding: 2rem !important;
@@ -24,14 +15,12 @@
   transition: all 0.3s ease !important;
 }
 
-/* Light mode */
 body.light-mode .payment-card {
   background: white !important;
   border: 1px solid #e2e8f0 !important;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05) !important;
 }
 
-/* Dark mode */
 body.dark-mode .payment-card {
   background: rgba(36, 36, 36, 0.7) !important;
   backdrop-filter: blur(12px) !important;
@@ -40,7 +29,6 @@ body.dark-mode .payment-card {
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2) !important;
 }
 
-/* Título */
 .payment-title {
   font-size: 1.5rem;
   font-weight: 700;
@@ -68,9 +56,6 @@ body.dark-mode .payment-title {
   color: white;
 }
 
-/* ======================================
-   FORMULARIO
-   ====================================== */
 .payment-form {
   margin-top: 1rem;
 }
@@ -95,7 +80,6 @@ body.dark-mode .payment-label {
   color: #e5e5e5;
 }
 
-/* Inputs */
 .payment-input {
   border-radius: 12px !important;
   padding: 14px 16px !important;
@@ -106,14 +90,12 @@ body.dark-mode .payment-label {
   background-clip: padding-box;
 }
 
-/* Focus state */
 .payment-input:focus {
   border-color: var(--color-primary) !important;
   box-shadow: 0 0 0 4px rgba(228, 87, 46, 0.1) !important;
   outline: none !important;
 }
 
-/* Light mode inputs */
 body.light-mode .payment-input {
   background: white;
   border: 2px solid #e2e8f0 !important;
@@ -124,7 +106,6 @@ body.light-mode .payment-input::placeholder {
   color: #a0aec0;
 }
 
-/* Dark mode inputs */
 body.dark-mode .payment-input {
   background: rgba(255, 255, 255, 0.05);
   border: 2px solid rgba(255, 255, 255, 0.1) !important;
@@ -158,7 +139,7 @@ body.dark-mode .payment-input:-webkit-autofill:focus {
                       0 0 0 4px rgba(228, 87, 46, 0.1) !important;
 }
 
-/* Light mode autofill fix */
+/* light mode autofill fix */
 body.light-mode .payment-input:-webkit-autofill,
 body.light-mode .payment-input:-webkit-autofill:hover,
 body.light-mode .payment-input:-webkit-autofill:focus {
@@ -167,9 +148,6 @@ body.light-mode .payment-input:-webkit-autofill:focus {
   border: 2px solid #e2e8f0 !important;
 }
 
-/* ======================================
-   BOTÓN DE PAGO
-   ====================================== */
 .payment-submit-btn {
   width: 100%;
   padding: 16px !important;
@@ -207,7 +185,6 @@ body.light-mode .payment-input:-webkit-autofill:focus {
   box-shadow: none;
 }
 
-/* Spinner */
 .payment-submit-btn .spinner-border {
   width: 1.2rem !important;
   height: 1.2rem !important;
@@ -223,9 +200,6 @@ body.light-mode .payment-input:-webkit-autofill:focus {
   to { transform: rotate(360deg); }
 }
 
-/* ======================================
-   COLUMNA DEL SUMMARY
-   ====================================== */
 .payment-summary-col {
   position: relative;
 }
@@ -235,9 +209,6 @@ body.light-mode .payment-input:-webkit-autofill:focus {
   top: 100px;
 }
 
-/* ======================================
-   RESPONSIVE
-   ====================================== */
 @media (max-width: 768px) {
   .payment-card {
     padding: 1.5rem !important;
@@ -261,7 +232,6 @@ body.light-mode .payment-input:-webkit-autofill:focus {
     font-size: 1rem !important;
   }
   
-  /* El summary pierde el sticky en móviles */
   .payment-summary-col .order-summary-card {
     position: static;
     margin-top: 2rem;
@@ -278,7 +248,6 @@ body.light-mode .payment-input:-webkit-autofill:focus {
     margin-bottom: 1.5rem;
   }
   
-  /* Asegurar que las columnas se apilen */
   .payment-form-col,
   .payment-summary-col {
     width: 100%;
@@ -294,4 +263,21 @@ body.light-mode .payment-input:-webkit-autofill:focus {
     padding: 12px !important;
     font-size: 0.95rem !important;
   }
+}
+
+.error-container {
+  color: #ff4d4d;
+  font-size: 0.75rem;
+  min-height: 18px;
+  margin-top: 4px;
+  font-weight: 500;
+}
+
+.payment-input.is-invalid {
+  border-color: #ff4d4d !important;
+  box-shadow: 0 0 0 0.2rem rgba(255, 77, 77, 0.25);
+}
+
+.payment-form-group {
+  margin-bottom: 0.5rem;
 }

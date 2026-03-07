@@ -3,7 +3,7 @@ import { useProduct } from "../../hooks/useProduct";
 import { useCartStore } from "../../store/useCartStore";
 import { useState } from "react";
 import { useUIStore } from "../../store/uiStore";
-import "./ProductDetail.css"; // 👈 Importamos los estilos específicos
+import "./ProductDetail.css";
 
 export const ProductDetail = () => {
   const { id } = useParams();
@@ -57,14 +57,14 @@ export const ProductDetail = () => {
       price: product.price,
       thumbnail: product.thumbnail,
     });
-    showToast("Added to cart 🛒");
+    showToast("Added to cart");
   };
 
-  // Función para renderizar estrellas
+  // funcion para renderizar estrellas
   const renderStars = (rating) => {
     const fullStars = Math.floor(rating);
     const emptyStars = 5 - fullStars;
-    
+
     return (
       <>
         {"★".repeat(fullStars)}
@@ -75,15 +75,12 @@ export const ProductDetail = () => {
 
   return (
     <div className="container product-detail-container">
-      <button
-        className="product-detail-back-btn"
-        onClick={() => navigate(-1)}
-      >
+      <button className="product-detail-back-btn" onClick={() => navigate(-1)}>
         ← Back
       </button>
 
       <div className="row g-5">
-        {/* Contenedor de imágenes */}
+        {/* Contenedor de imagenes */}
         <div className="col-md-6">
           <div className="product-detail-gallery">
             <div className="product-detail-thumbnails">
@@ -101,11 +98,7 @@ export const ProductDetail = () => {
             </div>
 
             <div className="product-detail-main-image">
-              <img
-                src={mainImage}
-                alt={product.title}
-                className="img-fluid"
-              />
+              <img src={mainImage} alt={product.title} className="img-fluid" />
             </div>
           </div>
         </div>
@@ -134,10 +127,9 @@ export const ProductDetail = () => {
                   )}
                 </div>
                 <span className="product-detail-rating-text">
-                  {typeof product.rating === "number" 
+                  {typeof product.rating === "number"
                     ? `(${product.rating})`
-                    : `(${product.rating.count} reviews)`
-                  }
+                    : `(${product.rating.count} reviews)`}
                 </span>
               </div>
             )}
@@ -153,9 +145,7 @@ export const ProductDetail = () => {
               )}
             </div>
 
-            <p className="product-detail-description">
-              {product.description}
-            </p>
+            <p className="product-detail-description">{product.description}</p>
 
             <div className="product-detail-actions">
               <button

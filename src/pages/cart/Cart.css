@@ -1,14 +1,8 @@
-/* ======================================
-   CART COMPONENT
-   ====================================== */
-
 .cart-container {
   padding-top: 2rem;
   padding-bottom: 2rem;
 }
 
-/* FIX CRÍTICO: el row de Bootstrap necesita align-items: flex-start
-   para que position: sticky funcione en la columna del summary */
 .cart-container .row {
   align-items: flex-start !important;
 }
@@ -32,9 +26,6 @@
   border-radius: 2px;
 }
 
-/* ======================================
-   CART ITEMS
-   ====================================== */
 .cart-item-card {
   border-radius: 16px !important;
   overflow: hidden !important;
@@ -58,17 +49,14 @@ body.dark-mode .cart-item-card {
 }
 
 .cart-item-card:hover {
-  transform: translateY(-2px) !important;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12) !important;
 }
 
-/* FIX: la fila interna de la card con altura mínima y alineación stretch */
 .cart-item-card > .row {
   align-items: stretch !important;
   min-height: 130px;
 }
 
-/* Columna de imagen */
 .cart-item-image-col {
   display: flex !important;
   align-items: center !important;
@@ -76,7 +64,6 @@ body.dark-mode .cart-item-card {
   padding: 1rem !important;
 }
 
-/* Imagen del producto */
 .cart-item-image {
   max-height: 110px;
   max-width: 100%;
@@ -90,7 +77,6 @@ body.dark-mode .cart-item-card {
   transform: scale(1.05);
 }
 
-/* FIX: card-body con flex para organizar verticalmente */
 .cart-item-card .card-body {
   display: flex !important;
   flex-direction: column !important;
@@ -98,7 +84,6 @@ body.dark-mode .cart-item-card {
   padding: 1rem 1.25rem 1rem 0.5rem !important;
 }
 
-/* Header con título y precio en la misma línea */
 .cart-item-header {
   display: flex;
   justify-content: space-between;
@@ -114,7 +99,7 @@ body.dark-mode .cart-item-card {
   text-decoration: none;
   line-height: 1.3;
   flex: 1;
-  min-width: 0; /* evita overflow del texto */
+  min-width: 0;
 }
 
 .cart-item-title h6 {
@@ -152,9 +137,6 @@ body.dark-mode .cart-item-title {
   margin-bottom: 0.35rem !important;
 }
 
-/* ======================================
-   QUANTITY CONTROLS
-   ====================================== */
 .cart-qty-control {
   display: inline-flex;
   align-items: center;
@@ -162,8 +144,8 @@ body.dark-mode .cart-item-title {
   overflow: hidden;
   border: 1px solid transparent;
   margin: 0.35rem 0;
-  width: fit-content;   /* FIX: evita que el flex padre lo estire */
-  align-self: flex-start; /* FIX: ancla al inicio en el flex column del card-body */
+  width: fit-content;   
+  align-self: flex-start; 
 }
 
 body.light-mode .cart-qty-control {
@@ -258,13 +240,6 @@ body.dark-mode .cart-remove-btn:hover {
   text-decoration: underline;
 }
 
-/* ======================================
-   ORDER SUMMARY — FIX STICKY
-   ====================================== */
-
-/* FIX: sticky debe estar en la columna, no solo en la card.
-   Bootstrap usa flexbox en .row, así que necesitamos align-self: flex-start
-   en la columna para que sticky funcione. */
 .cart-summary-col {
   position: sticky !important;
   top: 100px !important;
@@ -366,11 +341,6 @@ body.dark-mode .cart-summary-total {
   font-size: 1.2rem;
 }
 
-/* ======================================
-   BOTONES DEL SUMMARY
-   ====================================== */
-
-/* FIX: btn-primary-custom no estaba definido en ningún lado */
 .btn-primary-custom {
   display: block;
   background: var(--color-primary);
@@ -428,9 +398,6 @@ body.dark-mode .cart-continue-btn:hover {
   text-decoration: none !important;
 }
 
-/* ======================================
-   EMPTY CART STATE
-   ====================================== */
 .cart-empty-container {
   text-align: center;
   padding: 4rem 1rem;
@@ -482,9 +449,6 @@ body.dark-mode .cart-empty-title {
   box-shadow: 0 8px 20px rgba(228, 87, 46, 0.3);
 }
 
-/* ======================================
-   RESPONSIVE
-   ====================================== */
 @media (max-width: 768px) {
   .cart-summary-col {
     position: static !important;

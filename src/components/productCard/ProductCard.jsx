@@ -1,3 +1,4 @@
+import { ShoppingCart } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useCartStore } from "../../store/useCartStore";
 import { useUIStore } from "../../store/uiStore";
@@ -15,7 +16,7 @@ const ProductCard = ({ product }) => {
       thumbnail: product.thumbnail,
     });
 
-    showToast("Added to cart 🛒");
+    showToast("Added to cart");
   };
 
   return (

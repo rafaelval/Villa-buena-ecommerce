@@ -12,13 +12,11 @@
   transition: all 0.3s ease;
 }
 
-/* contenedor interno */
 .navbar-custom .container {
   padding-top: 0.25rem;
   padding-bottom: 0.25rem;
 }
 
-/* logo */
 .navbar-logo {
   display: flex;
   align-items: center;
@@ -35,7 +33,6 @@
   transition: all 0.3s ease;
 }
 
-/* cart button*/
 .navbar-cart-button {
   position: relative;
   width: 42px;
@@ -63,7 +60,6 @@
   transform: translateY(0);
 }
 
-/* badge del carrito (contador de items)*/
 .navbar-cart-badge {
   position: absolute;
   top: -5px;
@@ -96,7 +92,6 @@
   }
 }
 
-/* boton de temas*/
 .navbar-theme-toggle {
   background: rgba(255, 255, 255, 0.15);
   border: none;
@@ -121,7 +116,6 @@
   transform: rotate(15deg) scale(0.95);
 }
 
-/* dark mode */
 body.dark-mode .navbar-cart-button,
 body.dark-mode .navbar-theme-toggle {
   background: rgba(0, 0, 0, 0.2);
@@ -132,7 +126,6 @@ body.dark-mode .navbar-theme-toggle:hover {
   background: rgba(0, 0, 0, 0.3);
 }
 
-/* light mode */
 body.light-mode .navbar-cart-button,
 body.light-mode .navbar-theme-toggle {
   background: rgba(0, 0, 0, 0.1);
@@ -144,7 +137,6 @@ body.light-mode .navbar-theme-toggle:hover {
   background: rgba(0, 0, 0, 0.15);
 }
 
-/* responsive */
 @media (max-width: 768px) {
   .navbar-logo img {
     height: 65px;

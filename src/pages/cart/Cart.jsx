@@ -1,3 +1,4 @@
+import { Plus, Minus } from "lucide-react";
 import { CheckoutStepper } from "../../components/checkoutStepper/CheckoutStepper";
 import { useCartStore } from "../../store/useCartStore";
 import { Link, useNavigate } from "react-router-dom";
@@ -15,10 +16,7 @@ export const Cart = () => {
       <div className="container py-5">
         <div className="cart-empty-container">
           <h3 className="cart-empty-title">Your cart is empty</h3>
-          <button
-            className="cart-empty-btn"
-            onClick={() => navigate("/")}
-          >
+          <button className="cart-empty-btn" onClick={() => navigate("/")}>
             Go Shopping
           </button>
         </div>
@@ -32,12 +30,11 @@ export const Cart = () => {
       <h2 className="cart-title">Shopping Cart</h2>
 
       <div className="row">
-        {/* Listado de productos */}
+        {/* listado de productos */}
         <div className="col-md-8">
           {cart.map((item) => (
             <div key={item.id} className="cart-item-card card">
               <div className="row g-0">
-                {/* FIX: clase cart-item-image-col para controlar la columna de imagen */}
                 <div className="col-md-3 cart-item-image-col">
                   <img
                     src={item.thumbnail}
@@ -48,9 +45,11 @@ export const Cart = () => {
 
                 <div className="col-md-9">
                   <div className="card-body">
-                    {/* FIX: usamos cart-item-header para alinear título y precio */}
                     <div className="cart-item-header">
-                      <Link to={`/product/${item.id}`} className="cart-item-title">
+                      <Link
+                        to={`/product/${item.id}`}
+                        className="cart-item-title"
+                      >
                         <h6 className="mb-1">{item.title}</h6>
                       </Link>
                       <p className="cart-item-price mb-0">
@@ -62,14 +61,14 @@ export const Cart = () => {
                       Unit: ${item.price.toFixed(2)}
                     </p>
 
-                    {/* Controles de cantidad */}
+                    {/* controles de cantidad */}
                     <div className="cart-qty-control">
                       <button
                         className="cart-qty-btn"
                         onClick={() => decreaseQty(item.id)}
                         aria-label="Decrease quantity"
                       >
-                        −
+                        <Minus size={15} />
                       </button>
                       <span className="cart-qty-value">{item.qty}</span>
                       <button
@@ -77,7 +76,7 @@ export const Cart = () => {
                         onClick={() => increaseQty(item.id)}
                         aria-label="Increase quantity"
                       >
-                        +
+                        <Plus size={15} />
                       </button>
                     </div>
 
@@ -94,7 +93,6 @@ export const Cart = () => {
           ))}
         </div>
 
-        {/* FIX: clase cart-summary-col para manejar el sticky correctamente */}
         <div className="col-md-4 cart-summary-col">
           <div className="cart-summary-card card">
             <h5 className="cart-summary-title">Order Summary</h5>

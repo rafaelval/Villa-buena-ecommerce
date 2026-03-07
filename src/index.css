@@ -24,10 +24,6 @@ body.dark-mode select:-webkit-autofill {
   border: 1px solid rgba(255,255,255,0.12);
 }
 
-
-/* ======================================
-   BODY STYLES
-   ====================================== */
 body.light-mode {
   background-color: var(--color-light) !important;
   color: #2d3748 !important;
@@ -38,9 +34,6 @@ body.dark-mode {
   color: #f1f1f1 !important;
 }
 
-/* ======================================
-   INPUTS GLOBALES
-   ====================================== */
 body.dark-mode input,
 body.dark-mode select {
   background-color: var(--color-dark-surface) !important;
@@ -55,7 +48,6 @@ body.light-mode select {
   color: #2d3748 !important;
 }
 
-/* Placeholders */
 body.light-mode input::placeholder {
   color: #a0aec0;
   opacity: 1;
@@ -66,30 +58,6 @@ body.dark-mode input::placeholder {
   opacity: 1;
 }
 
-/* ======================================
-   BOTÓN THEME TOGGLE
-   ====================================== */
-.theme-toggle {
-  background: rgba(255,255,255,0.15);
-  border: none;
-  width: 42px;
-  height: 42px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: white;
-  transition: 0.2s ease;
-}
-
-.theme-toggle:hover {
-  background: rgba(255,255,255,0.25);
-  transform: rotate(15deg);
-}
-
-/* ======================================
-   TRANSICIONES GLOBALES
-   ====================================== */
 body,
 .product-card,
 .navbar-custom,
@@ -104,9 +72,6 @@ button {
     box-shadow 0.3s ease;
 }
 
-/* ======================================
-   UTILIDADES DE TEXTO
-   ====================================== */
 body.dark-mode .text-muted {
   color: #bdbdbd !important;
 }
@@ -115,58 +80,6 @@ body.light-mode .text-muted {
   color: #718096 !important;
 }
 
-/* ======================================
-   CHECKOUT SUMMARY (GLOBAL)
-   ====================================== */
-.checkout-summary {
-  border-radius: 16px;
-  border: 1px solid rgba(0,0,0,0.05);
-  transition: all 0.25s ease;
-}
-
-body.dark-mode .checkout-summary {
-  background: rgba(255,255,255,0.05);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255,255,255,0.08);
-}
-
-/* ======================================
-   INPUT CUSTOM (GLOBAL)
-   ====================================== */
-.custom-input {
-  border-radius: 10px;
-  padding: 10px 12px;
-  transition: all 0.25s ease;
-}
-
-body.dark-mode .custom-input {
-  background: rgba(255,255,255,0.05);
-  border: 1px solid rgba(255,255,255,0.1);
-}
-
-body.dark-mode .custom-input:focus {
-  background: rgba(255,255,255,0.08);
-  border: 1px solid rgba(255,255,255,0.25);
-  color: white;
-  outline: none;
-  box-shadow: none;
-}
-
-body.dark-mode .custom-input::placeholder {
-  color: rgba(255,255,255,0.5);
-}
-
-/* ======================================
-   STICKY SUMMARY UTILITY
-   ====================================== */
-.sticky-summary {
-  position: sticky;
-  top: 100px;
-}
-
-/* ======================================
-   ANIMACIONES GLOBALES
-   ====================================== */
 @keyframes fadeIn {
   from {
     opacity: 0;
@@ -194,22 +107,15 @@ body.dark-mode .custom-input::placeholder {
   }
 }
 
-/* Espaciado consistente */
 .py-5 {
   padding-top: 3rem !important;
   padding-bottom: 3rem !important;
 }
 
-/* ======================================
-   LOADING STATES
-   ====================================== */
 .spinner-border {
   color: var(--color-primary);
 }
 
-/* ======================================
-   ALERTS
-   ====================================== */
 .alert {
   border-radius: 12px;
   padding: 1rem;
@@ -226,9 +132,6 @@ body.dark-mode .alert {
   color: #feb2b2;
 }
 
-/* ======================================
-   PAGINATION BUTTONS
-   ====================================== */
 .pagination-btn {
   min-width: 100px;
   padding: 10px 24px;
@@ -241,7 +144,6 @@ body.dark-mode .alert {
   background: transparent;
 }
 
-/* Light mode */
 body.light-mode .pagination-btn {
   border: 2px solid var(--color-primary);
   color: var(--color-primary);
@@ -255,7 +157,6 @@ body.light-mode .pagination-btn:hover:not(:disabled) {
   box-shadow: 0 4px 12px rgba(228, 87, 46, 0.2);
 }
 
-/* Dark mode */
 body.dark-mode .pagination-btn {
   border: 2px solid var(--color-primary);
   color: var(--color-primary);
@@ -269,7 +170,6 @@ body.dark-mode .pagination-btn:hover:not(:disabled) {
   box-shadow: 0 4px 12px rgba(228, 87, 46, 0.3);
 }
 
-/* Disabled state */
 .pagination-btn:disabled {
   opacity: 0.5;
   cursor: not-allowed;
@@ -283,7 +183,6 @@ body.dark-mode .pagination-btn:disabled {
   color: #4a5568;
 }
 
-/* Responsive */
 @media (max-width: 576px) {
   .pagination-btn {
     min-width: 80px;

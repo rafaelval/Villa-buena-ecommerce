@@ -44,7 +44,6 @@
   transform: translateY(-2px) !important;
 }
 
-/* light mode */
 body.light-mode .filters-category-chip {
   color: #4a5568 !important;
   border-color: #e2e8f0 !important;
@@ -76,7 +75,6 @@ body.light-mode .filters-search-input::placeholder {
   color: #a0aec0 !important;
 }
 
-/* dark mode */
 body.dark-mode .filters-category-chip {
   color: #e5e5e5 !important;
   border-color: #3a3a3a !important;
@@ -113,7 +111,6 @@ body.dark-mode .filters-sort-select option {
   color: white !important;
 }
 
-/* responsive */
 @media (max-width: 768px) {
   .filters-category-chip {
     padding: 6px 14px !important;
