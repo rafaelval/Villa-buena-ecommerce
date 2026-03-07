@@ -1,10 +1,10 @@
 import { createBrowserRouter } from "react-router-dom";
 import { Home } from "../pages/Home";
-import { ProductDetail } from "../pages/ProductDetail";
-import { Cart } from "../pages/Cart";
-import { CheckoutShipping } from "../pages/CheckoutShipping";
-import { CheckoutPayment } from "../pages/CheckoutPayment";
-import { PaymentSuccess } from "../pages/PaymentSuccess";
+import { ProductDetail } from "../pages/productDetail/ProductDetail";
+import { Cart } from "../pages/cart/Cart";
+import { CheckoutShipping } from "../pages/checkoutShipping/CheckoutShipping";
+import { CheckoutPayment } from "../pages/checkoutpayment/CheckoutPayment";
+import { PaymentSuccess } from "../pages/paymentSuccess/PaymentSuccess";
 import { Layout } from "./layout";
 
 export const router = createBrowserRouter([

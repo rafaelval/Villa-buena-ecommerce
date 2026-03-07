@@ -1,0 +1,181 @@
+.navbar-custom {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background: linear-gradient(
+    90deg,
+    #E4572E 0%,
+    #E86B3C 35%,
+    #F57E4A 100%
+  );
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  transition: all 0.3s ease;
+}
+
+/* contenedor interno */
+.navbar-custom .container {
+  padding-top: 0.25rem;
+  padding-bottom: 0.25rem;
+}
+
+/* logo */
+.navbar-logo {
+  display: flex;
+  align-items: center;
+  transition: transform 0.3s ease;
+}
+
+.navbar-logo:hover {
+  transform: scale(1.02);
+}
+
+.navbar-logo img {
+  height: 85px;
+  mask-image: radial-gradient(circle, black 80%, transparent 100%);
+  transition: all 0.3s ease;
+}
+
+/* cart button*/
+.navbar-cart-button {
+  position: relative;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.15);
+  border: none;
+  cursor: pointer;
+  outline: none;
+  color: white;
+  transition: all 0.2s ease;
+  text-decoration: none;
+}
+
+.navbar-cart-button:hover {
+  background: rgba(255, 255, 255, 0.25);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.navbar-cart-button:active {
+  transform: translateY(0);
+}
+
+/* badge del carrito (contador de items)*/
+.navbar-cart-badge {
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  background-color: #ef4444;
+  color: #ffffff;
+  font-size: 0.7rem;
+  font-weight: bold;
+  min-width: 18px;
+  height: 18px;
+  padding: 0 4px;
+  border-radius: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  border: 2px solid rgba(255, 255, 255, 0.5);
+  animation: badgePop 0.3s ease;
+}
+
+@keyframes badgePop {
+  0% {
+    transform: scale(0);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* boton de temas*/
+.navbar-theme-toggle {
+  background: rgba(255, 255, 255, 0.15);
+  border: none;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.navbar-theme-toggle:hover {
+  background: rgba(255, 255, 255, 0.25);
+  transform: rotate(15deg) scale(1.05);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.navbar-theme-toggle:active {
+  transform: rotate(15deg) scale(0.95);
+}
+
+/* dark mode */
+body.dark-mode .navbar-cart-button,
+body.dark-mode .navbar-theme-toggle {
+  background: rgba(0, 0, 0, 0.2);
+}
+
+body.dark-mode .navbar-cart-button:hover,
+body.dark-mode .navbar-theme-toggle:hover {
+  background: rgba(0, 0, 0, 0.3);
+}
+
+/* light mode */
+body.light-mode .navbar-cart-button,
+body.light-mode .navbar-theme-toggle {
+  background: rgba(0, 0, 0, 0.1);
+  color: white;
+}
+
+body.light-mode .navbar-cart-button:hover,
+body.light-mode .navbar-theme-toggle:hover {
+  background: rgba(0, 0, 0, 0.15);
+}
+
+/* responsive */
+@media (max-width: 768px) {
+  .navbar-logo img {
+    height: 65px;
+  }
+  
+  .navbar-cart-button,
+  .navbar-theme-toggle {
+    width: 38px;
+    height: 38px;
+  }
+  
+  .navbar-cart-badge {
+    font-size: 0.65rem;
+    min-width: 16px;
+    height: 16px;
+  }
+}
+
+@media (max-width: 576px) {
+  .navbar-logo img {
+    height: 55px;
+  }
+  
+  .navbar-cart-button,
+  .navbar-theme-toggle {
+    width: 36px;
+    height: 36px;
+  }
+  
+  .navbar-custom .container {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+}

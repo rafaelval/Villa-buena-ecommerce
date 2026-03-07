@@ -1,8 +1,8 @@
 import { Outlet } from "react-router-dom";
-import Navbar from "../components/Navbar";
+import Navbar from "../components/navbar/Navbar";
 import { useUIStore } from "../store/uiStore";
 import { useEffect } from "react";
-import Toast from "../components/Toast";
+import Toast from "../components/toast/Toast";
 import { CartDrawer } from "../components/cart/CartDrawer";
 
 export const Layout = () => {

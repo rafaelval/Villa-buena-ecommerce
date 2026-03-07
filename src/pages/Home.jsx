@@ -1,8 +1,8 @@
 import { useSearchParams } from "react-router-dom";
 import { useMemo } from "react";
-import ProductCard from "../components/ProductCard";
+import ProductCard from "../components/productCard/ProductCard";
 import SkeletonCard from "../components/SkeletonCard";
-import Filters from "../components/Filters";
+import Filters from "../components/filters/Filters"
 import { useProducts } from "../hooks/useProducts";
 import { useCategories } from "../hooks/useCategories";
 
@@ -121,7 +121,7 @@ export const Home = () => {
       {!isLoading && totalPages > 1 && (
         <div className="d-flex justify-content-center mt-5 gap-2">
           <button
-            className="btn-secondary-custom btn-sm"
+            className="pagination-btn"
             disabled={page === 1}
             onClick={() => handlePageChange(page - 1)}
           >
@@ -133,7 +133,7 @@ export const Home = () => {
           </span>
 
           <button
-            className="btn-secondary-custom btn-sm"
+            className="pagination-btn"
             disabled={page === totalPages}
             onClick={() => handlePageChange(page + 1)}
           >

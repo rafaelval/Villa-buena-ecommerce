@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
-import { useDebounce } from "../hooks/useDebounce";
+import { useDebounce } from "../../hooks/useDebounce";
+import "./Filters.css";
 
 const Filters = ({
   category,
@@ -12,7 +13,6 @@ const Filters = ({
   const debouncedSearch = useDebounce(searchInput, 500);
 
   useEffect(() => {
-    // Mantener la página actual cuando se actualiza la búsqueda
     setSearchParams((prevParams) => {
       const params = new URLSearchParams(prevParams);
 
@@ -25,7 +25,6 @@ const Filters = ({
       if (sort) params.set("sort", sort);
       else params.delete("sort");
 
-      // Mantener la página actual, si no existe se setea a 1
       if (!params.has("page")) {
         params.set("page", "1");
       }
@@ -47,7 +46,6 @@ const Filters = ({
       if (sort) params.set("sort", sort);
       else params.delete("sort");
 
-      // Resetear a página 1 cuando cambia categoría
       params.set("page", "1");
 
       return params;
@@ -69,7 +67,6 @@ const Filters = ({
       if (newSort) params.set("sort", newSort);
       else params.delete("sort");
 
-      // Resetear a página 1 cuando cambia ordenamiento
       params.set("page", "1");
 
       return params;
@@ -78,12 +75,12 @@ const Filters = ({
 
   return (
     <>
-      {/*buscar y organizar*/}
+      {/* Buscar y organizar */}
       <div className="row mb-4">
         <div className="col-md-8 mb-2">
           <input
             type="text"
-            className="form-control"
+            className="form-control filters-search-input"
             placeholder="Search products..."
             value={searchInput}
             onChange={(e) => setSearchInput(e.target.value)}
@@ -92,7 +89,7 @@ const Filters = ({
 
         <div className="col-md-4">
           <select
-            className="form-select"
+            className="form-select filters-sort-select"
             value={sort}
             onChange={handleSortChange}
           >
@@ -103,10 +100,10 @@ const Filters = ({
         </div>
       </div>
 
-      {/* categorias */}
+      {/* Categorías */}
       <div className="mb-4 d-flex gap-2 flex-wrap">
         <button
-          className={`category-chip ${!category ? "active" : ""}`}
+          className={`filters-category-chip ${!category ? "active" : ""}`}
           onClick={() => handleCategoryChange("")}
         >
           All
@@ -115,7 +112,7 @@ const Filters = ({
         {categories.map((cat) => (
           <button
             key={cat.slug}
-            className={`category-chip ${category === cat.slug ? "active" : ""}`}
+            className={`filters-category-chip ${category === cat.slug ? "active" : ""}`}
             onClick={() => handleCategoryChange(cat.slug)}
           >
             {cat.name}

@@ -2,6 +2,7 @@ import { X, Plus, Minus, Trash2 } from "lucide-react";
 import { useUIStore } from "../../store/uiStore";
 import { useCartStore } from "../../store/useCartStore";
 import { useNavigate } from "react-router-dom";
+import "./CartDrawer.css";
 
 export const CartDrawer = () => {
   const { isCartOpen, closeCart } = useUIStore();
@@ -57,7 +58,12 @@ export const CartDrawer = () => {
                     <button onClick={() => increaseQty(item.id)}>+</button>
                   </div>
 
-                  <button className="remove-btn" onClick={() => removeFromCart(item.id)}>remove</button>
+                  <button
+                    className="remove-btn"
+                    onClick={() => removeFromCart(item.id)}
+                  >
+                    remove
+                  </button>
                 </div>
               </div>
             </div>

@@ -10,32 +10,27 @@ export const useUIStore = create(
         set((state) => ({
           darkMode: !state.darkMode,
         })),
-      //*cart drawer*/
+
+      /*cart drawer*/
       isCartOpen: false,
-
       openCart: () => set({ isCartOpen: true }),
-
       closeCart: () => set({ isCartOpen: false }),
 
       /*toast*/
       toast: null,
+      toastKey: 0,
 
       showToast: (message) => {
-        set({ toast: message });
-
-        setTimeout(() => {
-          set((state) => {
-            if (state.toast === message) {
-              return { toast: null };
-            }
-            return {};
-          });
-        }, 2000);
+        set((state) => ({
+          toast: message,
+          toastKey: state.toastKey + 1,
+        }));
       },
+
+      hideToast: () => set({ toast: null }),
     }),
     {
       name: "ui-storage",
-
       partialize: (state) => ({
         darkMode: state.darkMode,
       }),

@@ -1,0 +1,297 @@
+/* ======================================
+   CHECKOUT PAYMENT COMPONENT
+   ====================================== */
+
+/* Contenedor principal */
+.payment-container {
+  padding-top: 0;
+  padding-bottom: 3rem;
+}
+
+/* Wrapper del stepper */
+.payment-stepper-wrapper {
+  padding-top: 1rem;
+  padding-bottom: 2rem;
+}
+
+/* ======================================
+   TARJETA DE PAGO
+   ====================================== */
+.payment-card {
+  border-radius: 24px !important;
+  padding: 2rem !important;
+  border: none !important;
+  transition: all 0.3s ease !important;
+}
+
+/* Light mode */
+body.light-mode .payment-card {
+  background: white !important;
+  border: 1px solid #e2e8f0 !important;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05) !important;
+}
+
+/* Dark mode */
+body.dark-mode .payment-card {
+  background: rgba(36, 36, 36, 0.7) !important;
+  backdrop-filter: blur(12px) !important;
+  -webkit-backdrop-filter: blur(12px) !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2) !important;
+}
+
+/* Título */
+.payment-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 2rem;
+  position: relative;
+  display: inline-block;
+}
+
+.payment-title::after {
+  content: '';
+  position: absolute;
+  bottom: -8px;
+  left: 0;
+  width: 50px;
+  height: 4px;
+  background: var(--color-primary);
+  border-radius: 2px;
+}
+
+body.light-mode .payment-title {
+  color: #2d3748;
+}
+
+body.dark-mode .payment-title {
+  color: white;
+}
+
+/* ======================================
+   FORMULARIO
+   ====================================== */
+.payment-form {
+  margin-top: 1rem;
+}
+
+.payment-form-group {
+  margin-bottom: 1.5rem;
+}
+
+.payment-label {
+  display: block;
+  font-size: 0.9rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  letter-spacing: 0.3px;
+}
+
+body.light-mode .payment-label {
+  color: #4a5568;
+}
+
+body.dark-mode .payment-label {
+  color: #e5e5e5;
+}
+
+/* Inputs */
+.payment-input {
+  border-radius: 12px !important;
+  padding: 14px 16px !important;
+  font-size: 1rem !important;
+  transition: all 0.3s ease !important;
+  border: 2px solid transparent !important;
+  width: 100%;
+  background-clip: padding-box;
+}
+
+/* Focus state */
+.payment-input:focus {
+  border-color: var(--color-primary) !important;
+  box-shadow: 0 0 0 4px rgba(228, 87, 46, 0.1) !important;
+  outline: none !important;
+}
+
+/* Light mode inputs */
+body.light-mode .payment-input {
+  background: white;
+  border: 2px solid #e2e8f0 !important;
+  color: #2d3748;
+}
+
+body.light-mode .payment-input::placeholder {
+  color: #a0aec0;
+}
+
+/* Dark mode inputs */
+body.dark-mode .payment-input {
+  background: rgba(255, 255, 255, 0.05);
+  border: 2px solid rgba(255, 255, 255, 0.1) !important;
+  color: white;
+}
+
+body.dark-mode .payment-input::placeholder {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+body.dark-mode .payment-input:focus {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+/* ======================================
+   FIX PARA AUTOFILL DE CHROME
+   ====================================== */
+body.dark-mode .payment-input:-webkit-autofill,
+body.dark-mode .payment-input:-webkit-autofill:hover,
+body.dark-mode .payment-input:-webkit-autofill:focus {
+  -webkit-text-fill-color: white !important;
+  -webkit-box-shadow: 0 0 0px 1000px rgba(36, 36, 36, 0.9) inset !important;
+  border: 2px solid rgba(255, 255, 255, 0.1) !important;
+  border-radius: 12px !important;
+  caret-color: white;
+}
+
+body.dark-mode .payment-input:-webkit-autofill:focus {
+  border-color: var(--color-primary) !important;
+  -webkit-box-shadow: 0 0 0px 1000px rgba(36, 36, 36, 0.9) inset, 
+                      0 0 0 4px rgba(228, 87, 46, 0.1) !important;
+}
+
+/* Light mode autofill fix */
+body.light-mode .payment-input:-webkit-autofill,
+body.light-mode .payment-input:-webkit-autofill:hover,
+body.light-mode .payment-input:-webkit-autofill:focus {
+  -webkit-text-fill-color: #2d3748 !important;
+  -webkit-box-shadow: 0 0 0px 1000px white inset !important;
+  border: 2px solid #e2e8f0 !important;
+}
+
+/* ======================================
+   BOTÓN DE PAGO
+   ====================================== */
+.payment-submit-btn {
+  width: 100%;
+  padding: 16px !important;
+  font-size: 1.1rem !important;
+  font-weight: 700 !important;
+  border-radius: 50px !important;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-top: 1.5rem !important;
+  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
+  border: none;
+  color: white;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(228, 87, 46, 0.3);
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.payment-submit-btn:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(228, 87, 46, 0.4);
+}
+
+.payment-submit-btn:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.payment-submit-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+/* Spinner */
+.payment-submit-btn .spinner-border {
+  width: 1.2rem !important;
+  height: 1.2rem !important;
+  border-width: 0.15em !important;
+  border-color: white transparent white white !important;
+  flex-shrink: 0;
+  display: inline-block !important;
+  vertical-align: middle;
+  animation: spinner-border 0.75s linear infinite;
+}
+
+@keyframes spinner-border {
+  to { transform: rotate(360deg); }
+}
+
+/* ======================================
+   COLUMNA DEL SUMMARY
+   ====================================== */
+.payment-summary-col {
+  position: relative;
+}
+
+.payment-summary-col .order-summary-card {
+  position: sticky;
+  top: 100px;
+}
+
+/* ======================================
+   RESPONSIVE
+   ====================================== */
+@media (max-width: 768px) {
+  .payment-card {
+    padding: 1.5rem !important;
+  }
+  
+  .payment-title {
+    font-size: 1.25rem;
+  }
+  
+  .payment-title::after {
+    width: 40px;
+  }
+  
+  .payment-input {
+    padding: 12px 14px !important;
+    font-size: 0.95rem !important;
+  }
+  
+  .payment-submit-btn {
+    padding: 14px !important;
+    font-size: 1rem !important;
+  }
+  
+  /* El summary pierde el sticky en móviles */
+  .payment-summary-col .order-summary-card {
+    position: static;
+    margin-top: 2rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .payment-card {
+    padding: 1.25rem !important;
+  }
+  
+  .payment-title {
+    font-size: 1.1rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  /* Asegurar que las columnas se apilen */
+  .payment-form-col,
+  .payment-summary-col {
+    width: 100%;
+    max-width: 100%;
+    flex: 0 0 100%;
+  }
+  
+  .payment-summary-col {
+    margin-top: 1.5rem;
+  }
+  
+  .payment-submit-btn {
+    padding: 12px !important;
+    font-size: 0.95rem !important;
+  }
+}

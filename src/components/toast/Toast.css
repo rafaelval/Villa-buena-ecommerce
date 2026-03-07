@@ -1,0 +1,121 @@
+.custom-toast {
+  position: fixed;
+  top: 90px;
+  right: 20px;
+  padding: 14px 24px;
+  border-radius: 15px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  z-index: 9999;
+  min-width: 200px;
+  max-width: 350px;
+  text-align: center;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+
+  /* Transición para la animación de salida */
+  transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+
+  /* tipografia */
+  letter-spacing: 0.3px;
+
+  /* flex para acomodar el icono en un futuro (el actual esta hardcodeado) */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+
+  /* Animación de entrada inicial */
+  transform: translateX(0);
+  opacity: 1;
+}
+
+/* Animación de entrada - se aplica al montarse el componente */
+.custom-toast:not(.toast-exit) {
+  animation: slideIn 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+/* Estado de salida */
+.custom-toast.toast-exit {
+  transform: translateX(40px) !important;
+  opacity: 0 !important;
+}
+
+/* version con icono */
+.custom-toast.has-icon {
+  padding-left: 18px;
+}
+
+/* light mode */
+body.light-mode .custom-toast {
+  background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  color: #2d3748;
+}
+
+/* dark mode*/
+body.dark-mode .custom-toast {
+  background: rgba(28, 28, 30, 0.9);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #f1f1f1;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+body.dark-mode .custom-toast.success {
+  background: rgba(123, 148, 133, 0.47);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: white;
+}
+
+body.dark-mode .custom-toast.error {
+  background: rgba(239, 68, 68, 0.9);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: white;
+}
+
+/* animaciones */
+@keyframes slideIn {
+  0% {
+    transform: translateX(40px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+/* responsive */
+@media (max-width: 768px) {
+  .custom-toast {
+    top: 80px;
+    right: 15px;
+    left: 15px;
+    max-width: none;
+    width: auto;
+    border-radius: 40px;
+    font-size: 0.9rem;
+    padding: 12px 20px;
+  }
+
+  .custom-toast.toast-exit {
+    transform: translateX(40px) !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .custom-toast {
+    top: 70px;
+    padding: 10px 16px;
+    font-size: 0.85rem;
+    border-radius: 30px;
+  }
+
+  .custom-toast.toast-exit {
+    transform: translateX(40px) !important;
+  }
+}

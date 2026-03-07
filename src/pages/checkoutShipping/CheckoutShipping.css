@@ -1,0 +1,225 @@
+/* ======================================
+   CHECKOUT SHIPPING COMPONENT
+   ====================================== */
+
+/* Contenedor principal - igual que cart-container */
+.shipping-container {
+  padding-top: 0; /* El padding lo maneja el wrapper del stepper */
+  padding-bottom: 3rem;
+}
+
+/* Wrapper del stepper para controlar espaciado */
+.shipping-stepper-wrapper {
+  padding-top: 1rem;
+  padding-bottom: 1.5rem;
+}
+
+/* Título - igual que cart-title */
+.shipping-title {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 2rem;
+  position: relative;
+  display: inline-block;
+}
+
+.shipping-title::after {
+  content: '';
+  position: absolute;
+  bottom: -8px;
+  left: 0;
+  width: 60px;
+  height: 4px;
+  background: var(--color-primary);
+  border-radius: 2px;
+}
+
+/* ======================================
+   FORMULARIO DE ENVÍO
+   ====================================== */
+
+/* Columna del formulario */
+.shipping-form-col {
+  position: relative;
+}
+
+/* Formulario */
+.shipping-form {
+  background: transparent;
+  padding: 0.5rem 0;
+}
+
+/* Inputs personalizados */
+.shipping-input {
+  border-radius: 12px !important;
+  padding: 14px 16px !important;
+  font-size: 1rem !important;
+  transition: all 0.3s ease !important;
+  border: 2px solid transparent !important;
+  width: 100%;
+  background-clip: padding-box; 
+}
+
+/* Focus state */
+.shipping-input:focus {
+  border-color: var(--color-primary) !important;
+  box-shadow: 0 0 0 4px rgba(228, 87, 46, 0.1) !important;
+  outline: none !important;
+}
+
+/* Light mode inputs */
+body.light-mode .shipping-input {
+  background: white;
+  border: 2px solid #e2e8f0 !important;
+  color: #2d3748;
+}
+
+body.light-mode .shipping-input::placeholder {
+  color: #a0aec0;
+}
+
+/* Dark mode inputs */
+body.dark-mode .shipping-input {
+  background: rgba(255, 255, 255, 0.05);
+  border: 2px solid rgba(255, 255, 255, 0.1) !important;
+  color: white;
+}
+
+body.dark-mode .shipping-input::placeholder {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+body.dark-mode .shipping-input:focus {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+/* Este fix refuerza el del index.css para este componente */
+body.dark-mode .shipping-input:-webkit-autofill,
+body.dark-mode .shipping-input:-webkit-autofill:hover,
+body.dark-mode .shipping-input:-webkit-autofill:focus {
+  -webkit-text-fill-color: white !important;
+  -webkit-box-shadow: 0 0 0px 1000px rgba(36, 36, 36, 0.9) inset !important;
+  border: 2px solid rgba(255, 255, 255, 0.1) !important;
+  border-radius: 12px !important;
+  caret-color: white; /* Color del cursor */
+}
+
+/* Para cuando el input está en focus y tiene autofill */
+body.dark-mode .shipping-input:-webkit-autofill:focus {
+  border-color: var(--color-primary) !important;
+  -webkit-box-shadow: 0 0 0px 1000px rgba(36, 36, 36, 0.9) inset, 
+                      0 0 0 4px rgba(228, 87, 46, 0.1) !important;
+}
+
+/* ======================================
+   FIX PARA EL FONDO AMARILLO DE AUTOFILL EN LIGHT MODE (opcional)
+   ====================================== */
+body.light-mode .shipping-input:-webkit-autofill,
+body.light-mode .shipping-input:-webkit-autofill:hover,
+body.light-mode .shipping-input:-webkit-autofill:focus {
+  -webkit-text-fill-color: #2d3748 !important;
+  -webkit-box-shadow: 0 0 0px 1000px white inset !important;
+  border: 2px solid #e2e8f0 !important;
+}
+
+/* ======================================
+   BOTÓN DE ENVÍO
+   ====================================== */
+.shipping-submit-btn {
+  width: 100%;
+  padding: 14px !important;
+  font-size: 1.1rem !important;
+  font-weight: 700 !important;
+  border-radius: 50px !important;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-top: 1rem !important;
+  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
+  border: none;
+  color: white;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(228, 87, 46, 0.3);
+  cursor: pointer;
+}
+
+.shipping-submit-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(228, 87, 46, 0.4);
+}
+
+.shipping-submit-btn:active {
+  transform: translateY(0);
+}
+
+.shipping-submit-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+/* ======================================
+   COLUMNA DEL SUMMARY
+   ====================================== */
+.shipping-summary-col {
+  position: relative;
+}
+
+/* El OrderSummary ya tiene su propio sticky interno,
+   pero aseguramos que la columna permita el sticky */
+.shipping-summary-col .order-summary-card {
+  position: sticky;
+  top: 100px;
+}
+
+/* ======================================
+   RESPONSIVE
+   ====================================== */
+@media (max-width: 768px) {
+  .shipping-title {
+    font-size: 1.5rem;
+  }
+  
+  .shipping-title::after {
+    width: 40px;
+  }
+  
+  .shipping-input {
+    padding: 12px 14px !important;
+    font-size: 0.95rem !important;
+  }
+  
+  .shipping-submit-btn {
+    padding: 12px !important;
+    font-size: 1rem !important;
+  }
+  
+  /* El summary pierde el sticky en móviles */
+  .shipping-summary-col .order-summary-card {
+    position: static;
+    margin-top: 2rem;
+  }
+  
+  /* Ajuste para el offset en móviles */
+  .shipping-summary-col {
+    margin-left: 0 !important;
+  }
+}
+
+@media (max-width: 576px) {
+  .shipping-title {
+    font-size: 1.25rem;
+  }
+  
+  .shipping-form {
+    margin-bottom: 1rem;
+  }
+  
+  /* Asegurar que las columnas se apilen */
+  .shipping-form-col,
+  .shipping-summary-col {
+    width: 100%;
+    max-width: 100%;
+    flex: 0 0 100%;
+  }
+}

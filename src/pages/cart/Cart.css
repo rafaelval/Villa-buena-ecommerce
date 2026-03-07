@@ -1,0 +1,529 @@
+/* ======================================
+   CART COMPONENT
+   ====================================== */
+
+.cart-container {
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+}
+
+/* FIX CRÍTICO: el row de Bootstrap necesita align-items: flex-start
+   para que position: sticky funcione en la columna del summary */
+.cart-container .row {
+  align-items: flex-start !important;
+}
+
+.cart-title {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 2rem;
+  position: relative;
+  display: inline-block;
+}
+
+.cart-title::after {
+  content: '';
+  position: absolute;
+  bottom: -8px;
+  left: 0;
+  width: 60px;
+  height: 4px;
+  background: var(--color-primary);
+  border-radius: 2px;
+}
+
+/* ======================================
+   CART ITEMS
+   ====================================== */
+.cart-item-card {
+  border-radius: 16px !important;
+  overflow: hidden !important;
+  transition: all 0.3s ease !important;
+  margin-bottom: 1rem !important;
+  border: none !important;
+}
+
+body.light-mode .cart-item-card {
+  background: white !important;
+  border: 1px solid #e2e8f0 !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05) !important;
+}
+
+body.dark-mode .cart-item-card {
+  background: rgba(36, 36, 36, 0.7) !important;
+  backdrop-filter: blur(12px) !important;
+  -webkit-backdrop-filter: blur(12px) !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2) !important;
+}
+
+.cart-item-card:hover {
+  transform: translateY(-2px) !important;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12) !important;
+}
+
+/* FIX: la fila interna de la card con altura mínima y alineación stretch */
+.cart-item-card > .row {
+  align-items: stretch !important;
+  min-height: 130px;
+}
+
+/* Columna de imagen */
+.cart-item-image-col {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 1rem !important;
+}
+
+/* Imagen del producto */
+.cart-item-image {
+  max-height: 110px;
+  max-width: 100%;
+  width: auto;
+  object-fit: contain;
+  transition: transform 0.3s ease;
+  display: block;
+}
+
+.cart-item-card:hover .cart-item-image {
+  transform: scale(1.05);
+}
+
+/* FIX: card-body con flex para organizar verticalmente */
+.cart-item-card .card-body {
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: center !important;
+  padding: 1rem 1.25rem 1rem 0.5rem !important;
+}
+
+/* Header con título y precio en la misma línea */
+.cart-item-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
+  margin-bottom: 0.15rem;
+}
+
+.cart-item-title {
+  font-size: 1rem;
+  font-weight: 600;
+  transition: color 0.2s ease;
+  text-decoration: none;
+  line-height: 1.3;
+  flex: 1;
+  min-width: 0; /* evita overflow del texto */
+}
+
+.cart-item-title h6 {
+  font-size: inherit;
+  font-weight: inherit;
+  margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+body.light-mode .cart-item-title {
+  color: #2d3748;
+}
+
+body.dark-mode .cart-item-title {
+  color: #e5e5e5;
+}
+
+.cart-item-title:hover {
+  color: var(--color-primary);
+}
+
+.cart-item-price {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--color-primary);
+  white-space: nowrap;
+  flex-shrink: 0;
+  margin: 0;
+}
+
+.cart-item-unit-price {
+  font-size: 0.85rem;
+  margin-bottom: 0.35rem !important;
+}
+
+/* ======================================
+   QUANTITY CONTROLS
+   ====================================== */
+.cart-qty-control {
+  display: inline-flex;
+  align-items: center;
+  border-radius: 30px;
+  overflow: hidden;
+  border: 1px solid transparent;
+  margin: 0.35rem 0;
+  width: fit-content;   /* FIX: evita que el flex padre lo estire */
+  align-self: flex-start; /* FIX: ancla al inicio en el flex column del card-body */
+}
+
+body.light-mode .cart-qty-control {
+  background: #f7fafc;
+  border-color: #e2e8f0;
+}
+
+body.dark-mode .cart-qty-control {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+.cart-qty-btn {
+  width: 34px;
+  height: 34px;
+  border: none;
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 1rem;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  line-height: 1;
+}
+
+body.light-mode .cart-qty-btn {
+  background-color: white;
+  color: #4a5568;
+}
+
+body.light-mode .cart-qty-btn:hover {
+  background-color: var(--color-primary);
+  color: white;
+}
+
+body.dark-mode .cart-qty-btn {
+  background-color: rgba(255, 255, 255, 0.08);
+  color: #e5e5e5;
+  border: none;
+}
+
+body.dark-mode .cart-qty-btn:hover {
+  background-color: var(--color-primary);
+  color: white;
+}
+
+.cart-qty-value {
+  min-width: 36px;
+  text-align: center;
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+body.light-mode .cart-qty-value {
+  color: #2d3748;
+}
+
+body.dark-mode .cart-qty-value {
+  color: white;
+}
+
+.cart-remove-btn {
+  background: none;
+  border: none;
+  font-size: 0.85rem;
+  font-weight: 500;
+  padding: 0 !important;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-decoration: none;
+  display: inline-block;
+  margin-top: 0.15rem;
+}
+
+body.light-mode .cart-remove-btn {
+  color: #e53e3e;
+}
+
+body.light-mode .cart-remove-btn:hover {
+  color: #c53030;
+  text-decoration: underline;
+}
+
+body.dark-mode .cart-remove-btn {
+  color: #fc8181;
+}
+
+body.dark-mode .cart-remove-btn:hover {
+  color: #feb2b2;
+  text-decoration: underline;
+}
+
+/* ======================================
+   ORDER SUMMARY — FIX STICKY
+   ====================================== */
+
+/* FIX: sticky debe estar en la columna, no solo en la card.
+   Bootstrap usa flexbox en .row, así que necesitamos align-self: flex-start
+   en la columna para que sticky funcione. */
+.cart-summary-col {
+  position: sticky !important;
+  top: 100px !important;
+  align-self: flex-start !important;
+}
+
+.cart-summary-card {
+  border-radius: 20px !important;
+  padding: 1.5rem !important;
+  border: none !important;
+}
+
+body.light-mode .cart-summary-card {
+  background: white !important;
+  border: 1px solid #e2e8f0 !important;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05) !important;
+}
+
+body.dark-mode .cart-summary-card {
+  background: rgba(36, 36, 36, 0.7) !important;
+  backdrop-filter: blur(12px) !important;
+  -webkit-backdrop-filter: blur(12px) !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2) !important;
+}
+
+.cart-summary-title {
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin-bottom: 1.25rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 2px solid;
+}
+
+body.light-mode .cart-summary-title {
+  color: #2d3748;
+  border-bottom-color: #e2e8f0;
+}
+
+body.dark-mode .cart-summary-title {
+  color: white;
+  border-bottom-color: rgba(255, 255, 255, 0.1);
+}
+
+.cart-summary-details {
+  display: flex;
+  flex-direction: column;
+}
+
+.cart-summary-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.75rem;
+  font-size: 0.9rem;
+}
+
+.cart-summary-label {
+  color: #718096;
+}
+
+body.dark-mode .cart-summary-label {
+  color: #a0aec0;
+}
+
+.cart-summary-divider {
+  margin: 0.75rem 0;
+  border: none;
+  height: 1px;
+}
+
+body.light-mode .cart-summary-divider {
+  background: #e2e8f0;
+}
+
+body.dark-mode .cart-summary-divider {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.cart-summary-total {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: 700;
+  font-size: 1.05rem;
+  margin-top: 0.25rem;
+}
+
+body.light-mode .cart-summary-total {
+  color: #2d3748;
+}
+
+body.dark-mode .cart-summary-total {
+  color: white;
+}
+
+.cart-summary-total-amount {
+  color: var(--color-primary);
+  font-size: 1.2rem;
+}
+
+/* ======================================
+   BOTONES DEL SUMMARY
+   ====================================== */
+
+/* FIX: btn-primary-custom no estaba definido en ningún lado */
+.btn-primary-custom {
+  display: block;
+  background: var(--color-primary);
+  color: white !important;
+  border: none;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.btn-primary-custom:hover {
+  background: var(--color-primary-dark);
+  color: white !important;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 18px rgba(228, 87, 46, 0.35);
+}
+
+.cart-checkout-btn {
+  width: 100%;
+  padding: 0.8rem 1rem !important;
+  font-size: 0.95rem !important;
+  font-weight: 600 !important;
+  border-radius: 40px !important;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-top: 1.25rem !important;
+  margin-bottom: 0 !important;
+}
+
+.cart-continue-btn {
+  width: 100%;
+  margin-top: 0.75rem !important;
+  font-size: 0.9rem !important;
+  transition: all 0.2s ease !important;
+  display: block;
+  text-align: center;
+}
+
+body.light-mode .cart-continue-btn {
+  color: #718096 !important;
+}
+
+body.light-mode .cart-continue-btn:hover {
+  color: var(--color-primary) !important;
+  text-decoration: none !important;
+}
+
+body.dark-mode .cart-continue-btn {
+  color: #a0aec0 !important;
+}
+
+body.dark-mode .cart-continue-btn:hover {
+  color: var(--color-primary) !important;
+  text-decoration: none !important;
+}
+
+/* ======================================
+   EMPTY CART STATE
+   ====================================== */
+.cart-empty-container {
+  text-align: center;
+  padding: 4rem 1rem;
+  max-width: 500px;
+  margin: 2rem auto;
+  border-radius: 24px;
+}
+
+body.light-mode .cart-empty-container {
+  background: white;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05);
+}
+
+body.dark-mode .cart-empty-container {
+  background: rgba(36, 36, 36, 0.7);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.cart-empty-title {
+  font-size: 1.75rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+}
+
+body.light-mode .cart-empty-title {
+  color: #2d3748;
+}
+
+body.dark-mode .cart-empty-title {
+  color: white;
+}
+
+.cart-empty-btn {
+  padding: 0.75rem 2rem !important;
+  font-size: 1rem !important;
+  border-radius: 40px !important;
+  background: var(--color-primary) !important;
+  border: none !important;
+  color: white !important;
+  transition: all 0.3s ease !important;
+  cursor: pointer;
+}
+
+.cart-empty-btn:hover {
+  background: var(--color-primary-dark) !important;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(228, 87, 46, 0.3);
+}
+
+/* ======================================
+   RESPONSIVE
+   ====================================== */
+@media (max-width: 768px) {
+  .cart-summary-col {
+    position: static !important;
+    top: auto !important;
+  }
+
+  .cart-title {
+    font-size: 1.5rem;
+  }
+
+  .cart-title::after {
+    width: 40px;
+  }
+
+  .cart-item-title {
+    font-size: 0.95rem;
+  }
+
+  .cart-item-price {
+    font-size: 1rem;
+  }
+
+  .cart-qty-btn {
+    width: 30px;
+    height: 30px;
+    font-size: 0.95rem;
+  }
+
+  .cart-summary-card {
+    margin-top: 1.5rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .cart-item-image {
+    max-height: 80px;
+  }
+
+  .cart-empty-title {
+    font-size: 1.25rem;
+  }
+}
