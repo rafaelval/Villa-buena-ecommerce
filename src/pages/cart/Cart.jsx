@@ -3,6 +3,7 @@ import { CheckoutStepper } from "../../components/checkoutStepper/CheckoutSteppe
 import { useCartStore } from "../../store/useCartStore";
 import { Link, useNavigate } from "react-router-dom";
 import "./Cart.css";
+import { strings } from "../../utils/strings";
 
 export const Cart = () => {
   const { cart, increaseQty, decreaseQty, removeFromCart } = useCartStore();
@@ -10,14 +11,15 @@ export const Cart = () => {
 
   const total = cart.reduce((acc, item) => acc + item.price * item.qty, 0);
   const totalItems = cart.reduce((acc, item) => acc + item.qty, 0);
+  const s =strings
 
   if (cart.length === 0) {
     return (
       <div className="container py-5">
         <div className="cart-empty-container">
-          <h3 className="cart-empty-title">Your cart is empty</h3>
+          <h3 className="cart-empty-title">{s.empty}</h3>
           <button className="cart-empty-btn" onClick={() => navigate("/")}>
-            Go Shopping
+            {s.goShop}
           </button>
         </div>
       </div>
@@ -27,7 +29,7 @@ export const Cart = () => {
   return (
     <div className="container cart-container">
       <CheckoutStepper step={1} />
-      <h2 className="cart-title">Shopping Cart</h2>
+      <h2 className="cart-title">{s.shopping}</h2>
 
       <div className="row">
         {/* listado de productos */}
@@ -58,7 +60,7 @@ export const Cart = () => {
                     </div>
 
                     <p className="cart-item-unit-price text-muted small mb-2">
-                      Unit: ${item.price.toFixed(2)}
+                      {s.unit}: ${item.price.toFixed(2)}
                     </p>
 
                     {/* controles de cantidad */}
@@ -84,7 +86,7 @@ export const Cart = () => {
                       className="cart-remove-btn btn btn-link p-0"
                       onClick={() => removeFromCart(item.id)}
                     >
-                      Remove
+                      {s.remove}
                     </button>
                   </div>
                 </div>
@@ -95,25 +97,25 @@ export const Cart = () => {
 
         <div className="col-md-4 cart-summary-col">
           <div className="cart-summary-card card">
-            <h5 className="cart-summary-title">Order Summary</h5>
+            <h5 className="cart-summary-title">{s.summary}</h5>
 
             <div className="cart-summary-details">
               <div className="cart-summary-row">
                 <span className="cart-summary-label">
-                  Subtotal ({totalItems} {totalItems === 1 ? "item" : "items"})
+                  {s.subt} ({totalItems} {totalItems === 1 ? "item" : "items"})
                 </span>
                 <span>${total.toFixed(2)}</span>
               </div>
 
               <div className="cart-summary-row">
-                <span className="cart-summary-label">Shipping</span>
-                <span className="text-success">Free</span>
+                <span className="cart-summary-label">{s.shipping}</span>
+                <span className="text-success">{s.free}</span>
               </div>
 
               <hr className="cart-summary-divider" />
 
               <div className="cart-summary-total">
-                <span>Total</span>
+                <span>{s.total}</span>
                 <span className="cart-summary-total-amount">
                   ${total.toFixed(2)}
                 </span>
@@ -124,14 +126,14 @@ export const Cart = () => {
               className="cart-checkout-btn btn-primary-custom"
               onClick={() => navigate("/checkout/shipping")}
             >
-              Proceed to Checkout
+              {s.procCheck}
             </button>
 
             <button
               className="cart-continue-btn btn btn-link"
               onClick={() => navigate("/")}
             >
-              Continue Shopping
+              {s.contShop}
             </button>
           </div>
         </div>

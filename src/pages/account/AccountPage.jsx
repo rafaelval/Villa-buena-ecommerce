@@ -1,7 +1,8 @@
 import { useAuth0 } from "@auth0/auth0-react";
 import { useUserStore } from "../../store/useUserStore";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./AccountPage.css";
+import { strings } from "../../utils/strings";
 
 export const AccountPage = () => {
   const shipping = useUserStore((state) => state.shipping);
@@ -9,7 +10,14 @@ export const AccountPage = () => {
   const payment = useUserStore((state) => state.payment);
   const setPayment = useUserStore((state) => state.setPayment);
   const [saved, setSaved] = useState(false);
+  const hydrateFromAuth0 = useUserStore((state) => state.hydrateFromAuth0);
   const { user, isLoading, isAuthenticated } = useAuth0();
+  const s = strings
+
+  useEffect(() => {
+  if (user) hydrateFromAuth0(user);
+// eslint-disable-next-line react-hooks/exhaustive-deps
+}, [user]);
 
   if (isLoading) return <p>Loading...</p>;
   if (!isAuthenticated || !user)
@@ -52,7 +60,7 @@ export const AccountPage = () => {
 
   return (
     <div className="container account-container">
-      <h2 className="account-title">Account Information</h2>
+      <h2 className="account-title">{s.accInfo}</h2>
 
       <div className="account-card">
         <div className="account-profile-header">
@@ -66,47 +74,47 @@ export const AccountPage = () => {
         <hr className="account-divider" />
 
         <form onSubmit={handleSubmit} className="account-form">
-          <p className="account-section-title">Shipping</p>
+          <p className="account-section-title">{s.shipping}</p>
 
           <div className="account-form-group">
-            <label className="account-label">Full Name</label>
+            <label className="account-label">{s.fullName}</label>
             <input
               name="fullName"
               className="form-control account-input"
               value={shipping.fullName}
               onChange={handleShippingChange}
-              placeholder="Your full name"
+              placeholder={s.fullNmPlac}
             />
           </div>
 
           <div className="account-form-group">
-            <label className="account-label">Address</label>
+            <label className="account-label">{s.address}</label>
             <input
               name="address"
               className="form-control account-input"
               value={shipping.address}
               onChange={handleShippingChange}
-              placeholder="Your address"
+              placeholder={s.addressPlac}
             />
           </div>
 
           <div className="account-form-group">
-            <label className="account-label">City</label>
+            <label className="account-label">{s.city}</label>
             <input
-              name="city"
+              name="city" 
               className="form-control account-input"
               value={shipping.city}
               onChange={handleShippingChange}
-              placeholder="Your city"
+              placeholder={s.cityPlac}
             />
           </div>
 
           <hr className="account-divider" />
 
-          <p className="account-section-title">Payment</p>
+          <p className="account-section-title">{s.payment}</p>
 
           <div className="account-form-group">
-            <label className="account-label">Card Number</label>
+            <label className="account-label">{s.cardNbr}</label>
             <input
               name="cardNumber"
               className="form-control account-input"
@@ -118,7 +126,7 @@ export const AccountPage = () => {
 
           <div className="account-form-row">
             <div className="account-form-group">
-              <label className="account-label">Expiry Date</label>
+              <label className="account-label">{s.expire}</label>
               <input
                 name="expiryDate"
                 className="form-control account-input"
@@ -129,7 +137,7 @@ export const AccountPage = () => {
             </div>
 
             <div className="account-form-group">
-              <label className="account-label">CVC</label>
+              <label className="account-label">{s.cvc}</label>
               <input
                 name="cvc"
                 className="form-control account-input"

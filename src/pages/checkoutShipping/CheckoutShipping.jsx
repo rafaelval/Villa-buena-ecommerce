@@ -6,6 +6,7 @@ import { useUserStore } from "../../store/useUserStore";
 import { useAuth0 } from "@auth0/auth0-react";
 import { useEffect } from "react";
 import "./CheckoutShipping.css";
+import { strings } from "../../utils/strings";
 
 export const CheckoutShipping = () => {
   const navigate = useNavigate();
@@ -14,6 +15,7 @@ export const CheckoutShipping = () => {
   const shipping = useUserStore((state) => state.shipping);
   const setShipping = useUserStore((state) => state.setShipping);
   const hydrateFromAuth0 = useUserStore((state) => state.hydrateFromAuth0);
+  const s = strings
 
   useEffect(() => {
     if (user) {
@@ -37,7 +39,7 @@ export const CheckoutShipping = () => {
         <CheckoutStepper step={2} />
       </div>
 
-      <h2 className="shipping-title">Shipping Information</h2>
+      <h2 className="shipping-title">{s.shipInfo}</h2>
 
       <div className="row">
         <div className="col-md-6 shipping-form-col">
@@ -70,7 +72,7 @@ export const CheckoutShipping = () => {
             />
 
             <button type="submit" className="shipping-submit-btn">
-              Continue to Payment
+              {s.contPay}
             </button>
           </form>
         </div>

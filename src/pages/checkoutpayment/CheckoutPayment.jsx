@@ -6,6 +6,7 @@ import { OrderSummary } from "../../components/orderSummary/OrderSummary";
 import { useAuth0 } from "@auth0/auth0-react";
 import { useUserStore } from "../../store/useUserStore";
 import "./CheckoutPayment.css";
+import { strings } from "../../utils/strings";
 
 export const CheckoutPayment = () => {
   const navigate = useNavigate();
@@ -20,15 +21,16 @@ export const CheckoutPayment = () => {
 
   const cart = useCartStore((state) => state.cart);
   const clearCart = useCartStore((state) => state.clearCart);
+  const s = strings
 
   const validateExpiry = (value) => {
     if (value.length < 5) return "Format: MM/YY";
     const [month, year] = value.split("/").map(Number);
     const currentYear = new Date().getFullYear() % 100;
     const currentMonth = new Date().getMonth() + 1;
-    if (month < 1 || month > 12) return "Invalid month";
-    if (year < currentYear) return "Year expired";
-    if (year === currentYear && month < currentMonth) return "Month expired";
+    if (month < 1 || month > 12) return s.invalMonth;
+    if (year < currentYear) return s.yearExp;
+    if (year === currentYear && month < currentMonth) return s.monthExp;
     return null;
   };
 
@@ -70,10 +72,10 @@ export const CheckoutPayment = () => {
 
     const newErrors = {};
     if (formData.cardNumber.length < 19)
-      newErrors.cardNumber = "Full card number required";
+      newErrors.cardNumber = s.fullNumReq;
     const expiryError = validateExpiry(formData.expiryDate);
     if (expiryError) newErrors.expiryDate = expiryError;
-    if (formData.cvc.length < 3) newErrors.cvc = "CVC required";
+    if (formData.cvc.length < 3) newErrors.cvc = s.cvcReq;
 
     if (Object.keys(newErrors).length > 0) {
       setErrors(newErrors);
@@ -107,11 +109,11 @@ export const CheckoutPayment = () => {
       <div className="row">
         <div className="col-md-7 payment-form-col">
           <div className="payment-card card">
-            <h4 className="payment-title">Payment Method</h4>
+            <h4 className="payment-title">{s.payMeth}</h4>
 
             <form onSubmit={handlePayment} className="payment-form">
               <div className="payment-form-group">
-                <label className="payment-label">Card Number</label>
+                <label className="payment-label">{s.cardNbr}</label>
                 <input
                   type="text"
                   name="cardNumber"
@@ -126,7 +128,7 @@ export const CheckoutPayment = () => {
 
               <div className="row">
                 <div className="col-md-6 mb-1">
-                  <label className="payment-label">Expiry Date</label>
+                  <label className="payment-label">{s.expire}</label>
                   <input
                     type="text"
                     name="expiryDate"
@@ -140,7 +142,7 @@ export const CheckoutPayment = () => {
                 </div>
 
                 <div className="col-md-6 mb-1">
-                  <label className="payment-label">CVC</label>
+                  <label className="payment-label">{s.cvc}</label>
                   <input
                     type="text"
                     name="cvc"
@@ -159,7 +161,7 @@ export const CheckoutPayment = () => {
                 className="payment-submit-btn"
                 disabled={processing}
               >
-                {processing ? "Processing..." : "Pay Now"}
+                {processing ? s.processing : s.pay}
               </button>
             </form>
           </div>

@@ -1,8 +1,10 @@
 import { useCartStore } from "../../store/useCartStore";
+import { strings } from "../../utils/strings";
 import "./OrderSummary.css"; 
 
 export const OrderSummary = () => {
   const cart = useCartStore((state) => state.cart);
+  const s = strings
 
   const total = cart.reduce(
     (acc, item) => acc + item.price * item.qty,
@@ -15,7 +17,7 @@ export const OrderSummary = () => {
     return (
       <div className="order-summary-card card">
         <div className="order-summary-empty">
-          <p className="order-summary-empty-message">Your cart is empty</p>
+          <p className="order-summary-empty-message">{s.empty}</p>
         </div>
       </div>
     );
@@ -23,7 +25,7 @@ export const OrderSummary = () => {
 
   return (
     <div className="order-summary-card card">
-      <h5 className="order-summary-title">Order Summary</h5>
+      <h5 className="order-summary-title">{s.summary}</h5>
 
       {cart.map((item) => (
         <div key={item.id} className="order-summary-item">
@@ -34,7 +36,7 @@ export const OrderSummary = () => {
                 : item.title}
             </span>
             <span className="order-summary-item-quantity">
-              Amount: {item.qty}
+              {s.ammount}: {item.qty}
             </span>
           </div>
           <span className="order-summary-item-price">
@@ -47,20 +49,20 @@ export const OrderSummary = () => {
 
       <div className="order-summary-row">
         <span className="order-summary-label">
-          Subtotal ({totalItems} {totalItems === 1 ? "item" : "items"})
+          {s.subt} ({totalItems} {totalItems === 1 ? "item" : "items"})
         </span>
         <span>${total.toFixed(2)}</span>
       </div>
 
       <div className="order-summary-row">
-        <span className="order-summary-label">Shipping</span>
-        <span className="order-summary-shipping">Free</span>
+        <span className="order-summary-label">{s.shipping}</span>
+        <span className="order-summary-shipping">{s.free}</span>
       </div>
 
       <hr className="order-summary-divider" />
 
       <div className="order-summary-total">
-        <span>Total</span>
+        <span>{s.total}</span>
         <span className="order-summary-total-amount">
           ${total.toFixed(2)}
         </span>

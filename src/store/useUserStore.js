@@ -27,18 +27,23 @@ export const useUserStore = create(
         })),
 
       hydrateFromAuth0: (user) =>
-        set((state) => ({
-          shipping: {
-            ...state.shipping,
-            fullName: state.shipping.fullName || user?.name || "",
-          },
-        })),
+  set((state) => ({
+    shipping: {
+      ...state.shipping,
+      fullName: state.shipping.fullName || user?.name || "",
+    },
+  })),
       orders: [],
 
       addOrder: (order) =>
         set((state) => ({
           orders: [...state.orders, order],
         })),
+      clearUserData: () =>
+        set({
+          shipping: { fullName: "", address: "", city: "" },
+          payment: { cardNumber: "", expiryDate: "", cvc: "" },
+        }),
     }),
     {
       name: "user-checkout-storage",

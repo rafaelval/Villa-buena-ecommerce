@@ -5,6 +5,7 @@ import SkeletonCard from "../components/SkeletonCard";
 import Filters from "../components/filters/Filters"
 import { useProducts } from "../hooks/useProducts";
 import { useCategories } from "../hooks/useCategories";
+import { strings } from "../utils/strings";
 
 export const Home = () => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -13,6 +14,7 @@ export const Home = () => {
   const searchParam = searchParams.get("search") || "";
   const sort = searchParams.get("sort") || "";
   const page = Number(searchParams.get("page")) || 1;
+  const s = strings
 
   const {
     data: productsData,
@@ -79,7 +81,7 @@ export const Home = () => {
 
   return (
     <div className="container py-5">
-      <h2 className="mb-4">Store</h2>
+      <h2 className="mb-4">{s.store}</h2>
 
       <Filters
         className="category-chip"
@@ -92,10 +94,10 @@ export const Home = () => {
 
       {isError && (
         <div className="alert text-center mb-4">
-          <h5>⚠️ Error loading products</h5>
+          <h5>{s.errorProd}</h5>
           <p>{error?.message || "Something went wrong."}</p>
           <button className="btn-sm" onClick={() => refetch()}>
-            Try Again
+            {s.again}
           </button>
         </div>
       )}
@@ -108,7 +110,7 @@ export const Home = () => {
           ))
         ) : paginatedProducts.length === 0 ? (
           <div className="text-center py-5 w-100">
-            <p>No products found</p>
+            <p>{s.noProd}</p>
           </div>
         ) : (
           paginatedProducts.map((product) => (
@@ -125,11 +127,11 @@ export const Home = () => {
             disabled={page === 1}
             onClick={() => handlePageChange(page - 1)}
           >
-            Prev
+            {s.prev}
           </button>
 
           <span className="align-self-center">
-            Page {page} of {totalPages}
+            {s.page} {page} {s.of} {totalPages}
           </span>
 
           <button
@@ -137,7 +139,7 @@ export const Home = () => {
             disabled={page === totalPages}
             onClick={() => handlePageChange(page + 1)}
           >
-            Next
+            {s.next}
           </button>
         </div>
       )}

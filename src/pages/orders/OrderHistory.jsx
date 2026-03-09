@@ -2,18 +2,20 @@ import { useUserStore } from "../../store/useUserStore";
 import { Package, ShoppingBag } from "lucide-react";
 import { Link } from "react-router-dom";
 import "./OrderHistory.css";
+import { strings } from "../../utils/strings";
 
 export const OrderHistory = () => {
   const orders = useUserStore((state) => state.orders);
+  const s = strings
 
   if (orders.length === 0) {
     return (
       <div className="container orders-empty">
         <ShoppingBag size={48} className="orders-empty-icon" />
-        <h3>No orders yet</h3>
-        <p>Your order history will appear here after your first purchase.</p>
+        <h3>{s.noOrders}</h3>
+        <p>{s.orderHead}</p>
         <Link to="/" className="orders-shop-btn">
-          Start Shopping
+          {s.startShop}
         </Link>
       </div>
     );
@@ -21,7 +23,7 @@ export const OrderHistory = () => {
 
   return (
     <div className="container orders-container">
-      <h2 className="orders-title">Order History</h2>
+      <h2 className="orders-title">{s.orderHist}</h2>
 
       <div className="orders-list">
         {[...orders].reverse().map((order) => (
@@ -55,7 +57,7 @@ export const OrderHistory = () => {
                         : item.title}
                     </span>
                     <span className="orders-item-quantity">
-                      Amount: {item.qty}
+                      {s.ammount}: {item.qty}
                     </span>
                   </div>
                   <span className="orders-item-price">
@@ -70,17 +72,17 @@ export const OrderHistory = () => {
             <div className="orders-card-footer">
               <div className="orders-footer-row">
                 <span className="orders-footer-label">
-                  Subtotal ({order.items.reduce((a, i) => a + i.qty, 0)} items)
+                  {s.subt} ({order.items.reduce((a, i) => a + i.qty, 0)} items)
                 </span>
                 <span>${order.total.toFixed(2)}</span>
               </div>
               <div className="orders-footer-row">
-                <span className="orders-footer-label">Shipping</span>
-                <span className="orders-shipping-free">Free</span>
+                <span className="orders-footer-label">{s.shipping}</span>
+                <span className="orders-shipping-free">{s.free}</span>
               </div>
               <hr className="orders-divider" />
               <div className="orders-footer-total">
-                <span>Total</span>
+                <span>{s.total}</span>
                 <span className="orders-total-value">
                   ${order.total.toFixed(2)}
                 </span>

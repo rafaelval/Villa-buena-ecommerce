@@ -13,8 +13,8 @@ const onRedirectCallback = (appState) => {
 ReactDOM.createRoot(document.getElementById("root")).render(
   <QueryProvider>
     <Auth0Provider
-      domain="dev-rafaelval.us.auth0.com"
-      clientId="ripKJ8Jjq1c3gLEOcusOGUTBTFVGoVdG"
+      domain={import.meta.env.VITE_API_DOMAIN}
+      clientId={import.meta.env.VITE_API_CLIENTID}
       authorizationParams={{ redirect_uri: window.location.origin }}
       onRedirectCallback={onRedirectCallback}
       cacheLocation="localstorage"

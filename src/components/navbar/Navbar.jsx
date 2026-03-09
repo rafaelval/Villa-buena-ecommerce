@@ -5,10 +5,16 @@ import { Sun, Moon, ShoppingCart, ChevronDown } from "lucide-react";
 import "./Navbar.css";
 import { useState, useEffect, useRef } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
+import { strings } from "../../utils/strings";
+import { useUserStore } from "../../store/useUserStore";
 
 const Navbar = () => {
   const [userMenuOpen, setUserMenuOpen] = useState(false);
+  const [imgLoaded, setImgLoaded] = useState(false);
+  const clearCart = useCartStore((state) => state.clearCart);
+  const clearUserData = useUserStore((state) => state.clearUserData);
   const menuRef = useRef(null);
+  const s = strings
 
   const {
     isLoading,
@@ -20,7 +26,9 @@ const Navbar = () => {
   } = useAuth0();
 
   const logout = () => {
-  localStorage.removeItem("user-checkout-storage");
+  clearCart();
+  clearUserData();
+  localStorage.removeItem("cart-storage");
   auth0Logout({ logoutParams: { returnTo: window.location.origin } });
 };
 
@@ -47,18 +55,15 @@ const Navbar = () => {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
-
   return (
     <nav className={`navbar-custom ${scrolled ? "scrolled" : ""}`}>
       <div className="container d-flex justify-content-between align-items-center py-1">
-
         <Link to="/" className="navbar-logo">
           <img src="/logo.png" alt="Villa Buena" />
         </Link>
 
         {/* controles derecha */}
         <div className="d-flex align-items-center gap-3">
-
           <button
             className="navbar-cart-button"
             onClick={openCart}
@@ -73,7 +78,9 @@ const Navbar = () => {
           <button
             className="navbar-theme-toggle"
             onClick={toggleDarkMode}
-            aria-label={darkMode ? "Switch to light mode" : "Switch to dark mode"}
+            aria-label={
+              darkMode ? "Switch to light mode" : "Switch to dark mode"
+            }
           >
             {darkMode ? <Sun size={18} /> : <Moon size={18} />}
           </button>
@@ -93,6 +100,11 @@ const Navbar = () => {
                     src={user?.picture}
                     alt="profile"
                     className="navbar-user-avatar"
+                    onLoad={() => setImgLoaded(true)}
+                    style={{
+                      opacity: imgLoaded ? 1 : 0,
+                      transition: "opacity 0.2s ease",
+                    }}
                   />
                   <span className="navbar-user-name">{user?.given_name}</span>
                   <ChevronDown
@@ -108,34 +120,40 @@ const Navbar = () => {
                       className="navbar-user-menu-item"
                       onClick={() => setUserMenuOpen(false)}
                     >
-                      Account Information
+                      {s.accInfo}
                     </Link>
                     <Link
                       to="/orders"
                       className="navbar-user-menu-item"
                       onClick={() => setUserMenuOpen(false)}
                     >
-                      Order History
+                      {s.orderHist}
                     </Link>
                     <button
                       className="navbar-user-menu-item logout"
                       onClick={logout}
                     >
-                      Logout
+                      {s.logout}
                     </button>
                   </div>
                 )}
               </>
             ) : (
               <div className="d-flex align-items-center gap-2">
-                {error && <p className="text-danger mb-0" style={{ fontSize: "0.75rem" }}>Error</p>}
+                {error && (
+                  <p
+                    className="text-danger mb-0"
+                    style={{ fontSize: "0.75rem" }}
+                  >
+                    {s.error}
+                  </p>
+                )}
                 <button className="navbar-auth-btn" onClick={login}>
-                  Login
+                  {s.login}
                 </button>
               </div>
             )}
           </div>
-
         </div>
       </div>
     </nav>

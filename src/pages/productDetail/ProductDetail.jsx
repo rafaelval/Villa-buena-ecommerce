@@ -4,6 +4,7 @@ import { useCartStore } from "../../store/useCartStore";
 import { useState } from "react";
 import { useUIStore } from "../../store/uiStore";
 import "./ProductDetail.css";
+import { strings } from "../../utils/strings";
 
 export const ProductDetail = () => {
   const { id } = useParams();
@@ -17,13 +18,14 @@ export const ProductDetail = () => {
   const addToCart = useCartStore((state) => state.addToCart);
 
   const [selectedImage, setSelectedImage] = useState(null);
+  const s = strings;
 
   if (isLoading) {
     return (
       <div className="container py-5">
         <div className="product-detail-loading">
           <div className="spinner-border" role="status" />
-          <h4 className="mt-3">Loading product...</h4>
+          <h4 className="mt-3">{s.loadingProd}</h4>
         </div>
       </div>
     );
@@ -33,12 +35,12 @@ export const ProductDetail = () => {
     return (
       <div className="container py-5">
         <div className="product-detail-error">
-          <h4>Product not found</h4>
+          <h4>{s.prodNotFound}</h4>
           <button
             className="btn-secondary-custom"
             onClick={() => navigate("/")}
           >
-            ← Back to Store
+            {s.backStore}
           </button>
         </div>
       </div>
@@ -57,10 +59,9 @@ export const ProductDetail = () => {
       price: product.price,
       thumbnail: product.thumbnail,
     });
-    showToast("Added to cart");
+    showToast(s.added);
   };
 
-  // funcion para renderizar estrellas
   const renderStars = (rating) => {
     const fullStars = Math.floor(rating);
     const emptyStars = 5 - fullStars;
@@ -76,7 +77,7 @@ export const ProductDetail = () => {
   return (
     <div className="container product-detail-container">
       <button className="product-detail-back-btn" onClick={() => navigate(-1)}>
-        ← Back
+        {s.back}
       </button>
 
       <div className="row g-5">
@@ -152,14 +153,14 @@ export const ProductDetail = () => {
                 className="product-detail-add-btn btn-primary-custom"
                 onClick={handleAddToCart}
               >
-                Add to Cart
+                {s.addToCart}
               </button>
 
               <button
                 className="product-detail-buy-btn btn-secondary-custom"
                 onClick={() => navigate("/cart")}
               >
-                Buy Now
+                {s.buy}
               </button>
             </div>
           </div>

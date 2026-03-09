@@ -1,12 +1,13 @@
-import { ShoppingCart } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useCartStore } from "../../store/useCartStore";
 import { useUIStore } from "../../store/uiStore";
 import "./ProductCard.css";
+import { strings } from "../../utils/strings";
 
 const ProductCard = ({ product }) => {
   const addToCart = useCartStore((state) => state.addToCart);
   const showToast = useUIStore((state) => state.showToast);
+  const s = strings
 
   const handleAddToCart = () => {
     addToCart({
@@ -42,11 +43,11 @@ const ProductCard = ({ product }) => {
               to={`/product/${product.id}`}
               className="btn-secondary-custom"
             >
-              View
+              {s.view}
             </Link>
 
             <button className="btn-primary-custom" onClick={handleAddToCart}>
-              Add
+              {s.add}
             </button>
           </div>
         </div>

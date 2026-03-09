@@ -3,6 +3,7 @@ import { useUIStore } from "../../store/uiStore";
 import { useCartStore } from "../../store/useCartStore";
 import { useNavigate } from "react-router-dom";
 import "./CartDrawer.css";
+import { strings } from "../../utils/strings";
 
 export const CartDrawer = () => {
   const { isCartOpen, closeCart } = useUIStore();
@@ -14,6 +15,8 @@ export const CartDrawer = () => {
   const total = cart.reduce((acc, item) => acc + item.price * item.qty, 0);
 
   const totalItems = cart.reduce((acc, item) => acc + item.qty, 0);
+
+  const s = strings
 
   return (
     <>
@@ -28,7 +31,7 @@ export const CartDrawer = () => {
         {/* header */}
 
         <div className="cart-header">
-          <h5>Shopping Cart ({totalItems})</h5>
+          <h5>{s.shopping} ({totalItems})</h5>
 
           <button onClick={closeCart} className="cart-close">
             <X size={20} />
@@ -39,7 +42,7 @@ export const CartDrawer = () => {
 
         <div className="cart-items">
           {cart.length === 0 && (
-            <div className="cart-empty">Your cart is empty</div>
+            <div className="cart-empty">{s.empty}</div>
           )}
 
           {cart.map((item) => (
@@ -74,7 +77,7 @@ export const CartDrawer = () => {
 
         <div className="cart-footer">
           <div className="cart-total">
-            <span>Total</span>
+            <span>{s.total}</span>
             <span>${total.toFixed(2)}</span>
           </div>
 
@@ -86,7 +89,7 @@ export const CartDrawer = () => {
               navigate("/checkout/shipping");
             }}
           >
-            Checkout
+            {s.checkout}
           </button>
 
           <button
@@ -96,7 +99,7 @@ export const CartDrawer = () => {
               navigate("/cart");
             }}
           >
-            View Cart
+            {s.viewCart}
           </button>
         </div>
       </div>

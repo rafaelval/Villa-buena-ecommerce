@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useDebounce } from "../../hooks/useDebounce";
 import "./Filters.css";
+import { strings } from "../../utils/strings";
 
 const Filters = ({
   category,
@@ -11,6 +12,7 @@ const Filters = ({
 }) => {
   const [searchInput, setSearchInput] = useState(searchParam);
   const debouncedSearch = useDebounce(searchInput, 500);
+  const s = strings
 
   useEffect(() => {
     setSearchParams((prevParams) => {
@@ -81,7 +83,7 @@ const Filters = ({
           <input
             type="text"
             className="form-control filters-search-input"
-            placeholder="Search products..."
+            placeholder={s.search}
             value={searchInput}
             onChange={(e) => setSearchInput(e.target.value)}
           />
@@ -93,9 +95,9 @@ const Filters = ({
             value={sort}
             onChange={handleSortChange}
           >
-            <option value="">Sort By</option>
-            <option value="price-asc">Price: Low → High</option>
-            <option value="price-desc">Price: High → Low</option>
+            <option value="">{s.sort}</option>
+            <option value="price-asc">{s.lowHigh}</option>
+            <option value="price-desc">{s.highLow}</option>
           </select>
         </div>
       </div>
@@ -106,7 +108,7 @@ const Filters = ({
           className={`filters-category-chip ${!category ? "active" : ""}`}
           onClick={() => handleCategoryChange("")}
         >
-          All
+          {s.all}
         </button>
 
         {categories.map((cat) => (
