@@ -7,7 +7,7 @@ import { CheckoutPayment } from "../pages/checkoutpayment/CheckoutPayment";
 import { PaymentSuccess } from "../pages/paymentSuccess/PaymentSuccess";
 import { AccountPage } from "../pages/account/AccountPage";
 import { OrderHistory } from "../pages/orders/OrderHistory";
-import { Layout } from "./layout";
+import { Layout } from "./Layout";
 
 export const router = createBrowserRouter([
   {
