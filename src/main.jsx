@@ -17,6 +17,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
       clientId="ripKJ8Jjq1c3gLEOcusOGUTBTFVGoVdG"
       authorizationParams={{ redirect_uri: window.location.origin }}
       onRedirectCallback={onRedirectCallback}
+      cacheLocation="localstorage"
     >
       <RouterProvider router={router} />
     </Auth0Provider>

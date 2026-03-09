@@ -4,6 +4,7 @@ import { useState } from "react";
 import { CheckoutStepper } from "../../components/checkoutStepper/CheckoutStepper";
 import { OrderSummary } from "../../components/orderSummary/OrderSummary";
 import { useAuth0 } from "@auth0/auth0-react";
+import { useUserStore } from "../../store/useUserStore";
 import "./CheckoutPayment.css";
 
 export const CheckoutPayment = () => {
@@ -11,12 +12,11 @@ export const CheckoutPayment = () => {
   const { isAuthenticated, loginWithRedirect } = useAuth0();
   const [processing, setProcessing] = useState(false);
   const [errors, setErrors] = useState({});
+  const payment = useUserStore((state) => state.payment);
+  const setPayment = useUserStore((state) => state.setPayment);
+  const addOrder = useUserStore((state) => state.addOrder);
 
-  const [formData, setFormData] = useState({
-    cardNumber: "",
-    expiryDate: "",
-    cvc: "",
-  });
+  const [formData, setFormData] = useState(payment);
 
   const cart = useCartStore((state) => state.cart);
   const clearCart = useCartStore((state) => state.clearCart);
@@ -51,8 +51,11 @@ export const CheckoutPayment = () => {
       formattedValue = value.replace(/\D/g, "").substring(0, 3);
     }
 
-    setFormData({ ...formData, [name]: formattedValue });
-    if (errors[name]) setErrors({ ...errors, [name]: null });
+    setFormData((prev) => {
+      const updated = { ...prev, [name]: formattedValue };
+      setPayment(updated);
+      return updated;
+    });
   };
 
   const handlePayment = (e) => {
@@ -79,10 +82,19 @@ export const CheckoutPayment = () => {
 
     if (cart.length === 0) return navigate("/");
 
+    const orderId = Math.random().toString(36).substring(2, 10).toUpperCase();
+
     setProcessing(true);
     setTimeout(() => {
+      addOrder({
+        id: orderId,
+        date: new Date().toISOString(),
+        items: [...cart],
+        total: cart.reduce((acc, item) => acc + item.price * item.qty, 0),
+      });
       clearCart();
-      navigate("/payment/success");
+
+      navigate("/payment/success", { state: { orderId } });
     }, 1500);
   };
 
